@@ -47,8 +47,7 @@ end
 	Order.create(order_id: rand(1..15),stripe_id: Faker::Alphanumeric.alphanumeric 10)
 end
 
-User.create(first_name: "Admin", last_name: "kittens", username: "admindusite", age: 95, password: "VyM123456AbN" is_admin: true)
+User.create(first_name: "Admin", last_name: "kittens", username: "admindusite", age: 95, password: "VyM123456AbN", email: "adminkittens@gmail.com", is_admin: true)
 19.times.do
-	User.create(first_name: Faker::Name.first_name,last_name: Faker::Name.last_name,username: Faker::Space.moon,age: rand(18..99),password: Faker::Alphanumeric.alphanumeric 10, is_admin: "false")
+	User.create(first_name: Faker::Name.first_name,last_name: Faker::Name.last_name,username: Faker::Space.moon,age: rand(18..99),password: Faker::Alphanumeric.alphanumeric 10, email: Faker::Internet.email, is_admin: "false")
 end
-
