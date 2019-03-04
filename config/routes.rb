@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :carts
+  resources :orders
   root 'home#index'
   devise_for :users
   resources :items
