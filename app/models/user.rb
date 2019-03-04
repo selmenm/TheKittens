@@ -8,7 +8,7 @@ class User < ApplicationRecord
 
 	has_many :carts
 
-	validates :first_name, :last_name, :age, :description, :price, :image_url, presence: true
+	validates :first_name, :last_name, :username, :age, :email, presence: true
 
 	def self.find_first_by_auth_conditions(warden_conditions)
  		conditions = warden_conditions.dup
