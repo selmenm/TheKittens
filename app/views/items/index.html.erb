@@ -226,20 +226,6 @@
     </div>
 
     <!-- Page Title-->
-    <div class="page-title d-flex" aria-label="Page title" style="background-image: url(img/page-title/shop-pattern.jpg);">
-      <div class="container text-left align-self-center">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a>
-            </li>
-            <li class="breadcrumb-item"><a href="shop-boxed-ls.html">Shop</a>
-            </li>
-          </ol>
-        </nav>
-        <h1 class="page-title-heading">Shop Catalog</h1>
-        <div class="page-title-subheading">Shop Full Width Layout with <strong>Filters on Top</strong></div>
-      </div>
-    </div>
     <!-- Page Content-->
     <div class="container-fluid pb-5 mb-3">
       <div class="row justify-content-center">
@@ -251,7 +237,7 @@
                 <div class="form-inline pb-4">
                   <label class="text-muted mr-3" for="product-sort">Sort by</label>
                   <select class="form-control form-control-bordered mr-3" id="product-sort">
-                    <option>Popularuty</option>
+                    <option>Popularity</option>
                     <option>Low - Hight Price</option>
                     <option>High - Low Price</option>
                     <option>Average Rating</option>
@@ -376,237 +362,35 @@
           <!-- Shop Grid-->
           <div class="row">
             <!-- Product-->
+            <% @items.each do |element| %>
             <div class="col-lg-3 col-md-4 col-sm-6 mb-30">
               <div class="product-card mx-auto mb-3">
-                <div class="product-head d-flex justify-content-between align-items-center"><span class="badge badge-danger">Sale</span>
-                  <div class="rating-stars"><i class="fe-icon-star active"></i><i class="fe-icon-star active"></i><i class="fe-icon-star active"></i><i class="fe-icon-star active"></i><i class="fe-icon-star"></i>
+              
+                <div class="product-head d-flex justify-content-between align-items-center"><span class="badge badge-danger">En vente!</span>
+                  <div class="rating-stars"><i class="far fa-star active"></i><i class="far fa-star active"></i><i class="far fa-star active"></i><i class="far fa-star active"></i><i class="far fa-star"></i>
                   </div>
-                </div><a class="product-thumb" href="shop-single.html"><img src="img/shop/01.jpg" alt="Product Thumbnail"/></a>
-                <div class="product-card-body"><a class="product-meta" href="shop-categories.html">Smart home</a>
-                  <h5 class="product-title"><a href="shop-single.html">Amazon Echo Dot (2nd Generation)</a></h5><span class="product-price">
-                    <del>$62.00</del>$49.99</span>
+                </div><a class="product-thumb" href="shop-single.html"><img src="<%= element.image_url%>"s/></a>
+                <div class="product-card-body"><a class="product-meta" href="shop-categories.html">"Category"</a>
+                  <h5 class="product-title"><a href="shop-single.html"><%= element.title %></a></h5><span class="product-price">
+                    <%= element.price.to_i %>€</span>
                 </div>
                 <div class="product-buttons-wrap">
                   <div class="product-buttons">
-                    <div class="product-button"><a href="#" data-toast data-toast-position="topRight" data-toast-type="info" data-toast-icon="fe-icon-help-circle" data-toast-title="Product" data-toast-message="added to your wishlist!"><i class="fe-icon-heart"></i></a></div>
-                    <div class="product-button"><a href="#" data-toast data-toast-position="topRight" data-toast-type="info" data-toast-icon="fe-icon-help-circle" data-toast-title="Product" data-toast-message="added to comparison table!"><i class="fe-icon-repeat"></i></a></div>
-                    <div class="product-button"><a href="#" data-toast data-toast-position="topRight" data-toast-type="success" data-toast-icon="fe-icon-check-circle" data-toast-title="Product" data-toast-message="added to cart successfuly!"><i class="fe-icon-shopping-cart"></i></a></div>
+                    <div class="product-button"><a href="#" data-toast data-toast-position="topRight" data-toast-type="info" data-toast-icon="fe-icon-help-circle" data-toast-title="Product" data-toast-message="added to your wishlist!"><i class="far fa-heart"></i></a></div>
+                    <div class="product-button"><a href="#" data-toast data-toast-position="topRight" data-toast-type="success" data-toast-icon="fe-icon-check-circle" data-toast-title="Product" data-toast-message="added to cart successfuly!"><i class="fas fa-cart-plus"></i></a></div>
                   </div>
                 </div>
               </div>
             </div>
-            <!-- Product-->
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-30">
-              <div class="product-card mx-auto mb-3">
-                <div class="product-head text-right">
-                  <div class="rating-stars"><i class="fe-icon-star active"></i><i class="fe-icon-star active"></i><i class="fe-icon-star active"></i><i class="fe-icon-star"></i><i class="fe-icon-star"></i>
-                  </div>
-                </div><a class="product-thumb" href="shop-single.html"><img src="img/shop/11.jpg" alt="Product Thumbnail"/></a>
-                <div class="product-card-body"><a class="product-meta" href="shop-categories.html">Headphones</a>
-                  <h5 class="product-title"><a href="shop-single.html">Edifier W855BT Bluetooth Headphones</a></h5><span class="product-price">$99.75</span>
-                </div>
-                <div class="product-buttons-wrap">
-                  <div class="product-buttons">
-                    <div class="product-button"><a href="#" data-toast data-toast-position="topRight" data-toast-type="info" data-toast-icon="fe-icon-help-circle" data-toast-title="Product" data-toast-message="added to your wishlist!"><i class="fe-icon-heart"></i></a></div>
-                    <div class="product-button"><a href="#" data-toast data-toast-position="topRight" data-toast-type="info" data-toast-icon="fe-icon-help-circle" data-toast-title="Product" data-toast-message="added to comparison table!"><i class="fe-icon-repeat"></i></a></div>
-                    <div class="product-button"><a href="#" data-toast data-toast-position="topRight" data-toast-type="success" data-toast-icon="fe-icon-check-circle" data-toast-title="Product" data-toast-message="added to cart successfuly!"><i class="fe-icon-shopping-cart"></i></a></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Product-->
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-30">
-              <div class="product-card mx-auto mb-3">
-                <div class="product-head"><span class="badge badge-secondary">Out of Stock</span></div><a class="product-thumb" href="shop-single.html"><img src="img/shop/03.jpg" alt="Product Thumbnail"/></a>
-                <div class="product-card-body"><a class="product-meta" href="shop-categories.html">Computers, laptops</a>
-                  <h5 class="product-title"><a href="shop-single.html">Microsoft Surface Pro 4 Tablet</a></h5><span class="product-price text-muted">$1,049.10</span>
-                </div>
-                <div class="product-buttons-wrap">
-                  <div class="product-buttons">
-                    <div class="product-button"><a href="#" data-toast data-toast-position="topRight" data-toast-type="info" data-toast-icon="fe-icon-help-circle" data-toast-title="Product" data-toast-message="added to your wishlist!"><i class="fe-icon-heart"></i></a></div>
-                    <div class="product-button"><a href="#" data-toast data-toast-position="topRight" data-toast-type="info" data-toast-icon="fe-icon-help-circle" data-toast-title="Product" data-toast-message="added to comparison table!"><i class="fe-icon-repeat"></i></a></div>
-                    <div class="product-button"><a href="shop-single.html"><i class="fe-icon-arrow-right"></i></a></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Product-->
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-30">
-              <div class="product-card mx-auto mb-3">
-                <div class="product-head text-right">
-                  <div class="rating-stars"><i class="fe-icon-star active"></i><i class="fe-icon-star active"></i><i class="fe-icon-star active"></i><i class="fe-icon-star active"></i><i class="fe-icon-star"></i>
-                  </div>
-                </div><a class="product-thumb" href="shop-single.html"><img src="img/shop/09.jpg" alt="Product Thumbnail"/></a>
-                <div class="product-card-body"><a class="product-meta" href="shop-categories.html">Action cameras</a>
-                  <h5 class="product-title"><a href="shop-single.html">Samsung Gear 360 Camera</a></h5><span class="product-price">$74.00</span>
-                </div>
-                <div class="product-buttons-wrap">
-                  <div class="product-buttons">
-                    <div class="product-button"><a href="#" data-toast data-toast-position="topRight" data-toast-type="info" data-toast-icon="fe-icon-help-circle" data-toast-title="Product" data-toast-message="added to your wishlist!"><i class="fe-icon-heart"></i></a></div>
-                    <div class="product-button"><a href="#" data-toast data-toast-position="topRight" data-toast-type="info" data-toast-icon="fe-icon-help-circle" data-toast-title="Product" data-toast-message="added to comparison table!"><i class="fe-icon-repeat"></i></a></div>
-                    <div class="product-button"><a href="#" data-toast data-toast-position="topRight" data-toast-type="success" data-toast-icon="fe-icon-check-circle" data-toast-title="Product" data-toast-message="added to cart successfuly!"><i class="fe-icon-shopping-cart"></i></a></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Product-->
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-30">
-              <div class="product-card mx-auto mb-3">
-                <div class="product-head text-right">
-                  <div class="rating-stars">
-                  </div>
-                </div><a class="product-thumb" href="shop-single.html"><img src="img/shop/04.jpg" alt="Product Thumbnail"/></a>
-                <div class="product-card-body"><a class="product-meta" href="shop-categories.html">Smartphones</a>
-                  <h5 class="product-title"><a href="shop-single.html">Apple iPhone X 64GB Space Gray</a></h5><span class="product-price">$939.99</span>
-                </div>
-                <div class="product-buttons-wrap">
-                  <div class="product-buttons">
-                    <div class="product-button"><a href="#" data-toast data-toast-position="topRight" data-toast-type="info" data-toast-icon="fe-icon-help-circle" data-toast-title="Product" data-toast-message="added to your wishlist!"><i class="fe-icon-heart"></i></a></div>
-                    <div class="product-button"><a href="#" data-toast data-toast-position="topRight" data-toast-type="info" data-toast-icon="fe-icon-help-circle" data-toast-title="Product" data-toast-message="added to comparison table!"><i class="fe-icon-repeat"></i></a></div>
-                    <div class="product-button"><a href="#" data-toast data-toast-position="topRight" data-toast-type="success" data-toast-icon="fe-icon-check-circle" data-toast-title="Product" data-toast-message="added to cart successfuly!"><i class="fe-icon-shopping-cart"></i></a></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Product-->
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-30">
-              <div class="product-card mx-auto mb-3">
-                <div class="product-head d-flex justify-content-between align-items-center"><span class="badge badge-success">Popular</span>
-                  <div class="rating-stars"><i class="fe-icon-star active"></i><i class="fe-icon-star active"></i><i class="fe-icon-star active"></i><i class="fe-icon-star active"></i><i class="fe-icon-star active"></i>
-                  </div>
-                </div><a class="product-thumb" href="shop-single.html"><img src="img/shop/06.jpg" alt="Product Thumbnail"/></a>
-                <div class="product-card-body"><a class="product-meta" href="shop-categories.html">Video Games</a>
-                  <h5 class="product-title"><a href="shop-single.html">Microsoft Xbox One S White</a></h5><span class="product-price">$298.99</span>
-                </div>
-                <div class="product-buttons-wrap">
-                  <div class="product-buttons">
-                    <div class="product-button"><a href="#" data-toast data-toast-position="topRight" data-toast-type="info" data-toast-icon="fe-icon-help-circle" data-toast-title="Product" data-toast-message="added to your wishlist!"><i class="fe-icon-heart"></i></a></div>
-                    <div class="product-button"><a href="#" data-toast data-toast-position="topRight" data-toast-type="info" data-toast-icon="fe-icon-help-circle" data-toast-title="Product" data-toast-message="added to comparison table!"><i class="fe-icon-repeat"></i></a></div>
-                    <div class="product-button"><a href="#" data-toast data-toast-position="topRight" data-toast-type="success" data-toast-icon="fe-icon-check-circle" data-toast-title="Product" data-toast-message="added to cart successfuly!"><i class="fe-icon-shopping-cart"></i></a></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Product-->
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-30">
-              <div class="product-card mx-auto mb-3">
-                <div class="product-head text-right">
-                  <div class="rating-stars"><i class="fe-icon-star active"></i><i class="fe-icon-star active"></i><i class="fe-icon-star active"></i><i class="fe-icon-star active"></i><i class="fe-icon-star"></i>
-                  </div>
-                </div><a class="product-thumb" href="shop-single.html"><img src="img/shop/08.jpg" alt="Product Thumbnail"/></a>
-                <div class="product-card-body"><a class="product-meta" href="shop-categories.html">TV, Video &amp; Audio</a>
-                  <h5 class="product-title"><a href="shop-single.html">Sony 55-Inch 4K Smart (Android) TV</a></h5><span class="product-price">$1,195.00</span>
-                </div>
-                <div class="product-buttons-wrap">
-                  <div class="product-buttons">
-                    <div class="product-button"><a href="#" data-toast data-toast-position="topRight" data-toast-type="info" data-toast-icon="fe-icon-help-circle" data-toast-title="Product" data-toast-message="added to your wishlist!"><i class="fe-icon-heart"></i></a></div>
-                    <div class="product-button"><a href="#" data-toast data-toast-position="topRight" data-toast-type="info" data-toast-icon="fe-icon-help-circle" data-toast-title="Product" data-toast-message="added to comparison table!"><i class="fe-icon-repeat"></i></a></div>
-                    <div class="product-button"><a href="#" data-toast data-toast-position="topRight" data-toast-type="success" data-toast-icon="fe-icon-check-circle" data-toast-title="Product" data-toast-message="added to cart successfuly!"><i class="fe-icon-shopping-cart"></i></a></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Product-->
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-30">
-              <div class="product-card mx-auto mb-3">
-                <div class="product-head"><span class="badge badge-danger">Sale</span></div><a class="product-thumb" href="shop-single.html"><img src="img/shop/10.jpg" alt="Product Thumbnail"/></a>
-                <div class="product-card-body"><a class="product-meta" href="shop-categories.html">Printers &amp; Ink</a>
-                  <h5 class="product-title"><a href="shop-single.html">Hewlett-Packard LaserJet Pro Printer</a></h5><span class="product-price">
-                    <del>$280.00</del>$249.50</span>
-                </div>
-                <div class="product-buttons-wrap">
-                  <div class="product-buttons">
-                    <div class="product-button"><a href="#" data-toast data-toast-position="topRight" data-toast-type="info" data-toast-icon="fe-icon-help-circle" data-toast-title="Product" data-toast-message="added to your wishlist!"><i class="fe-icon-heart"></i></a></div>
-                    <div class="product-button"><a href="#" data-toast data-toast-position="topRight" data-toast-type="info" data-toast-icon="fe-icon-help-circle" data-toast-title="Product" data-toast-message="added to comparison table!"><i class="fe-icon-repeat"></i></a></div>
-                    <div class="product-button"><a href="#" data-toast data-toast-position="topRight" data-toast-type="success" data-toast-icon="fe-icon-check-circle" data-toast-title="Product" data-toast-message="added to cart successfuly!"><i class="fe-icon-shopping-cart"></i></a></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Product-->
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-30">
-              <div class="product-card mx-auto mb-3">
-                <div class="product-head text-right">
-                  <div class="rating-stars">
-                  </div>
-                </div><a class="product-thumb" href="shop-single.html"><img src="img/shop/07.jpg" alt="Product Thumbnail"/></a>
-                <div class="product-card-body"><a class="product-meta" href="shop-categories.html">Smartphones</a>
-                  <h5 class="product-title"><a href="shop-single.html">Samsung Galaxy S9 Plus 128GB</a></h5><span class="product-price">$859.00</span>
-                </div>
-                <div class="product-buttons-wrap">
-                  <div class="product-buttons">
-                    <div class="product-button"><a href="#" data-toast data-toast-position="topRight" data-toast-type="info" data-toast-icon="fe-icon-help-circle" data-toast-title="Product" data-toast-message="added to your wishlist!"><i class="fe-icon-heart"></i></a></div>
-                    <div class="product-button"><a href="#" data-toast data-toast-position="topRight" data-toast-type="info" data-toast-icon="fe-icon-help-circle" data-toast-title="Product" data-toast-message="added to comparison table!"><i class="fe-icon-repeat"></i></a></div>
-                    <div class="product-button"><a href="#" data-toast data-toast-position="topRight" data-toast-type="success" data-toast-icon="fe-icon-check-circle" data-toast-title="Product" data-toast-message="added to cart successfuly!"><i class="fe-icon-shopping-cart"></i></a></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Product-->
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-30">
-              <div class="product-card mx-auto mb-3">
-                <div class="product-head"><span class="badge badge-secondary">Out of Stock</span></div><a class="product-thumb" href="shop-single.html"><img src="img/shop/12.jpg" alt="Product Thumbnail"/></a>
-                <div class="product-card-body"><a class="product-meta" href="shop-categories.html">Wearable electornics</a>
-                  <h5 class="product-title"><a href="shop-single.html">Apple Watch Series 3 Rose Gold</a></h5><span class="product-price text-muted">$329.40</span>
-                </div>
-                <div class="product-buttons-wrap">
-                  <div class="product-buttons">
-                    <div class="product-button"><a href="#" data-toast data-toast-position="topRight" data-toast-type="info" data-toast-icon="fe-icon-help-circle" data-toast-title="Product" data-toast-message="added to your wishlist!"><i class="fe-icon-heart"></i></a></div>
-                    <div class="product-button"><a href="#" data-toast data-toast-position="topRight" data-toast-type="info" data-toast-icon="fe-icon-help-circle" data-toast-title="Product" data-toast-message="added to comparison table!"><i class="fe-icon-repeat"></i></a></div>
-                    <div class="product-button"><a href="shop-single.html"><i class="fe-icon-arrow-right"></i></a></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Product-->
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-30">
-              <div class="product-card mx-auto mb-3">
-                <div class="product-head text-right">
-                  <div class="rating-stars"><i class="fe-icon-star active"></i><i class="fe-icon-star active"></i><i class="fe-icon-star active"></i><i class="fe-icon-star"></i><i class="fe-icon-star"></i>
-                  </div>
-                </div><a class="product-thumb" href="shop-single.html"><img src="img/shop/05.jpg" alt="Product Thumbnail"/></a>
-                <div class="product-card-body"><a class="product-meta" href="shop-categories.html">Headphones</a>
-                  <h5 class="product-title"><a href="shop-single.html">Zeus Bluetooth Earbud Headphones</a></h5><span class="product-price">$28.99</span>
-                </div>
-                <div class="product-buttons-wrap">
-                  <div class="product-buttons">
-                    <div class="product-button"><a href="#" data-toast data-toast-position="topRight" data-toast-type="info" data-toast-icon="fe-icon-help-circle" data-toast-title="Product" data-toast-message="added to your wishlist!"><i class="fe-icon-heart"></i></a></div>
-                    <div class="product-button"><a href="#" data-toast data-toast-position="topRight" data-toast-type="info" data-toast-icon="fe-icon-help-circle" data-toast-title="Product" data-toast-message="added to comparison table!"><i class="fe-icon-repeat"></i></a></div>
-                    <div class="product-button"><a href="#" data-toast data-toast-position="topRight" data-toast-type="success" data-toast-icon="fe-icon-check-circle" data-toast-title="Product" data-toast-message="added to cart successfuly!"><i class="fe-icon-shopping-cart"></i></a></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Product-->
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-30">
-              <div class="product-card mx-auto mb-3">
-                <div class="product-head text-right">
-                  <div class="rating-stars"><i class="fe-icon-star active"></i><i class="fe-icon-star active"></i><i class="fe-icon-star"></i><i class="fe-icon-star"></i><i class="fe-icon-star"></i>
-                  </div>
-                </div><a class="product-thumb" href="shop-single.html"><img src="img/shop/02.jpg" alt="Product Thumbnail"/></a>
-                <div class="product-card-body"><a class="product-meta" href="shop-categories.html">Photo cameras</a>
-                  <h5 class="product-title"><a href="shop-single.html">Aberg Best 21 Mega Pixels Photo Camera</a></h5><span class="product-price">$135.00</span>
-                </div>
-                <div class="product-buttons-wrap">
-                  <div class="product-buttons">
-                    <div class="product-button"><a href="#" data-toast data-toast-position="topRight" data-toast-type="info" data-toast-icon="fe-icon-help-circle" data-toast-title="Product" data-toast-message="added to your wishlist!"><i class="fe-icon-heart"></i></a></div>
-                    <div class="product-button"><a href="#" data-toast data-toast-position="topRight" data-toast-type="info" data-toast-icon="fe-icon-help-circle" data-toast-title="Product" data-toast-message="added to comparison table!"><i class="fe-icon-repeat"></i></a></div>
-                    <div class="product-button"><a href="#" data-toast data-toast-position="topRight" data-toast-type="success" data-toast-icon="fe-icon-check-circle" data-toast-title="Product" data-toast-message="added to cart successfuly!"><i class="fe-icon-shopping-cart"></i></a></div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <% end %>
           </div>
-          <div class="pt-3">
+          <div class="row">
             <!-- Pagination-->
             <nav class="pagination"><a class="prev-btn" href="#"><i class="fe-icon-chevron-left"></i>Prev</a>
               <ul class="pages">
                 <li class="d-block d-sm-none w-100">2 / 18</li>
                 <li class="d-none d-sm-inline-block"><a href="#">1</a></li>
                 <li class="d-none d-sm-inline-block active"><a href="#">2</a></li>
-                <li class="d-none d-sm-inline-block"><a href="#">3</a></li>
-                <li class="d-none d-sm-inline-block"><a href="#">4</a></li>
-                <li class="d-none d-sm-inline-block"><a href="#">5</a></li>
                 <li class="d-none d-sm-inline-block">...</li>
                 <li class="d-none d-sm-inline-block"><a href="#">18</a></li>
               </ul><a class="next-btn" href="#">Next<i class="fe-icon-chevron-right"></i></a>
@@ -615,36 +399,4 @@
         </div>
       </div>
     </div>
-    
-
-
-
-
-
-
-
-<p id="notice"><%= notice %></p>
-
-<h1>Items</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @items.each do |item| %>
-      <tr>
-        <td><%= link_to 'Show', item %></td>
-        <td><%= link_to 'Edit', edit_item_path(item) %></td>
-        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Item', new_item_path %>
+</body>
