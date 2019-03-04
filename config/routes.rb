@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :reviews
   root 'items#index'
   devise_for :users
   resources :items
