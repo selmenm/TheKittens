@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'items#index'
+  get '/home/contact', to: 'home#contact', as: 'contacts'
   devise_for :users
   resources :reviews
   resources :items
