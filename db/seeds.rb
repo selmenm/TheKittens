@@ -31,23 +31,27 @@ cat_pictures_array =
 	"https://image.noelshack.com/fichiers/2019/10/1/1551697081-cat19.jpg",
 	"https://image.noelshack.com/fichiers/2019/10/1/1551697081-cat20.jpg"
 ]
+
+User.create(first_name: "Admin", last_name: "kittens", username: "admindusite", age: 95, password: "VyM123456AbN", email: "adminkittens@gmail.com", is_admin: true)
+19.times.do
+	User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, username: Faker::Space.moon, age: rand(18..99), password: Faker::Alphanumeric.alphanumeric 10, email: Faker::Internet.email)
+end
+
 cat_pictures_array.each do |cat_pic|
 	Item.create(title: Faker::Hipster.words, description: Faker::Lorem.paragraph, price: Faker::Number.decimal(2), image_url: cat_pic)
 end
 
 20.times.do
-	Review.create(rating: rand(1..5),title: Faker::Book.title, content: Faker::Lorem.paragraph)
+	Order.create(stripe_id: Faker::Alphanumeric.alphanumeric 10)
 end
 
 20.times.do
-	Cart.create(user_id: rand(1..15),cart_id: rand(1..15), order_id: rand(1..15), item_id: rand(1..15),quantity: rand(1..10))
+	Review.create(rating: rand(1..5), title: Faker::Book.title, content: Faker::Lorem.paragraph, item_id: rand(1..15), user_id: rand(1..15))
 end
 
 20.times.do
-	Order.create(order_id: rand(1..15),stripe_id: Faker::Alphanumeric.alphanumeric 10)
+	Cart.create(user_id: rand(1..15), cart_id: rand(1..15), order_id: rand(1..15), item_id: rand(1..15), quantity: rand(1..10))
 end
 
-User.create(first_name: "Admin", last_name: "kittens", username: "admindusite", age: 95, password: "VyM123456AbN", email: "adminkittens@gmail.com", is_admin: true)
-19.times.do
-	User.create(first_name: Faker::Name.first_name,last_name: Faker::Name.last_name,username: Faker::Space.moon,age: rand(18..99),password: Faker::Alphanumeric.alphanumeric 10, email: Faker::Internet.email, is_admin: "false")
-end
+
+
