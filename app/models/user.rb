@@ -1,10 +1,15 @@
 class User < ApplicationRecord
+	
 	attr_accessor :pseudo
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
 
+	has_many :carts
+	has_many :reviews
+
+	validates :first_name, :last_name, :username, :age, :email, presence: true
 
 	def self.find_first_by_auth_conditions(warden_conditions)
  		conditions = warden_conditions.dup
