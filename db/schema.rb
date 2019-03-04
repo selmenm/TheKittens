@@ -11,9 +11,20 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2019_03_04_142027) do
-
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "carts", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "order_id"
+    t.bigint "item_id"
+    t.integer "quantity", default: 1
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_carts_on_item_id"
+    t.index ["order_id"], name: "index_carts_on_order_id"
+    t.index ["user_id"], name: "index_carts_on_user_id"
+  end
 
   create_table "items", force: :cascade do |t|
     t.string "title"
@@ -24,10 +35,15 @@ ActiveRecord::Schema.define(version: 2019_03_04_142027) do
     t.datetime "updated_at", null: false
   end
 
+<<<<<<< HEAD
   create_table "reviews", force: :cascade do |t|
     t.string "title"
     t.text "content"
     t.integer "rating"
+=======
+  create_table "orders", force: :cascade do |t|
+    t.string "stripe_id"
+>>>>>>> 66ad4b1daf9a48844c27bfe9c3c91149b5c317fd
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
