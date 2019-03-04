@@ -33,16 +33,29 @@ cat_pictures_array =
 ]
 
 User.create(first_name: "Admin", last_name: "kittens", username: "admindusite", age: 95, password: "VyM123456AbN", email: "adminkittens@gmail.com", is_admin: true)
+
 19.times do
-	User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, username: Faker::Space.moon, age: rand(18..99), password: Faker::Alphanumeric.alphanumeric 10, email: Faker::Internet.email)
+	User.create(
+		first_name: Faker::Name.first_name,
+		last_name: Faker::Name.last_name,
+		username: Faker::Space.moon,
+		age: rand(18..99),
+		password: "Loveeeeee",
+		email: Faker::Internet.email
+	)
 end
 
 cat_pictures_array.each do |cat_pic|
-	Item.create(title: Faker::Hipster.words, description: Faker::Lorem.paragraph, price: Faker::Number.decimal(2), image_url: cat_pic)
+	Item.create(
+	title: Faker::Hipster.words,
+	description: Faker::Lorem.paragraph,
+	price: Faker::Number.decimal(2),
+	image_url: cat_pic
+	)
 end
 
 20.times do
-	Order.create(stripe_id: Faker::Alphanumeric.alphanumeric 10)
+	Order.create(stripe_id: "CustStripeMaGueule")
 end
 
 20.times do
@@ -50,7 +63,7 @@ end
 end
 
 20.times do
-	Cart.create(user_id: rand(1..15), cart_id: rand(1..15), order_id: rand(1..15), item_id: rand(1..15), quantity: rand(1..10))
+	Cart.create(user_id: rand(1..15), order_id: rand(1..15), item_id: rand(1..15), quantity: rand(1..10))
 end
 
 
