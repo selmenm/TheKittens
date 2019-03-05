@@ -33,7 +33,7 @@ cat_pictures_array =
 ]
 
 User.create(first_name: "Admin", last_name: "kittens", username: "admindusite", age: 95, password: "VyM123456AbN", email: "adminkittens@gmail.com", is_admin: true)
-
+puts "Admin créé"
 19.times do
 	User.create(
 		first_name: Faker::Name.first_name,
@@ -44,27 +44,28 @@ User.create(first_name: "Admin", last_name: "kittens", username: "admindusite", 
 		email: Faker::Internet.email
 	)
 end
+puts"19 utilisateurs créés"
 
 cat_pictures_array.each do |cat_pic|
 	Item.create(
-	title: Faker::Hipster.words,
+	title: Faker::Hipster.word,
 	description: Faker::Lorem.paragraph,
 	price: Faker::Number.decimal(2),
 	image_url: cat_pic
 	)
 end
+puts"20 items créés"
 
 20.times do
 	Order.create(stripe_id: "CustStripeMaGueule")
 end
-
+puts"20 Commandes créés"
 20.times do
 	Review.create(rating: rand(1..5), title: Faker::Book.title, content: Faker::Lorem.paragraph, item_id: rand(1..15), user_id: rand(1..15))
 end
+puts"20 Avis créés"
 
 20.times do
 	Cart.create(user_id: rand(1..15), order_id: rand(1..15), item_id: rand(1..15), quantity: rand(1..10))
 end
-
-
-
+puts"20 paniers créés"

@@ -5,7 +5,8 @@ class ItemsController < ApplicationController
   # GET /items.json
   def index
     @items = Item.all
-    #@item = Item.find(params[:item_id])
+    array_items = []
+
   end
 
   # GET /items/1
