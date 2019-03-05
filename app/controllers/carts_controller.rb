@@ -26,9 +26,6 @@ class CartsController < ApplicationController
   # POST /carts.json
   def create
     @user = current_user.id
-    puts "$" * 60
-    puts params
-    puts "$" * 60
     @cart = Cart.new(cart_params)
     @cart.user_id  = current_user.id
 

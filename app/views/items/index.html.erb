@@ -354,19 +354,18 @@
                     <div class="product-button"><a href="#" data-toast data-toast-position="topRight" data-toast-type="info" data-toast-icon="fe-icon-help-circle" data-toast-title="Product" data-toast-message="added to your wishlist!"><i class="far fa-heart"></i></a></div>
 
 
-                    <div class="product-button"><a href="#"  data-toast data-toast-position="topRight" data-toast-type="success" data-toast-icon="fe-icon-check-circle" data-toast-title="Product" data-toast-message="added to cart successfuly!"><i class="fas fa-cart-plus"></i></a>
-                   
-                    </div>
-                      <%= form_for Cart.new do |f| %>
-                      <%= f.hidden_field :item_id, :value => element.id %>
-                      <%= f.submit  %>
-                      <% end %>
 
 
                     
+                    <%= form_for Cart.new do |f| %>
+                    <%= f.hidden_field :item_id, :value => element.id %>
+                    <%= button_tag(type: "submit", class: "product-button") do %>
+                      <i class="fas fa-cart-plus"></i>
+                    <% end %>
+                    <% end %>
 
 
-
+                     
                   </div>
                 </div>
               </div>
