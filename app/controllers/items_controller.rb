@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
+    @items = Item.page(params[:page]).per(6).without_count
     @reviews = Review.all
   end
 
