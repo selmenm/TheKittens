@@ -32,9 +32,22 @@ cat_pictures_array =
 	"https://image.noelshack.com/fichiers/2019/10/1/1551697081-cat20.jpg"
 ]
 
-User.create(first_name: "Admin", last_name: "kittens", username: "admindusite", age: 95, password: "VyM123456AbN", email: "adminkittens@gmail.com", is_admin: true)
+20.times do
+	Order.create(stripe_id: "CustStripeMaGueule")
+end
 
-19.times do
+5.times do 
+	cat_pictures_array.each do |cat_pic|
+		Item.create(
+		title: Faker::Hipster.word,
+		description: Faker::Lorem.paragraph,
+		price: Faker::Number.decimal(2),
+		image_url: cat_pic
+		)
+	end
+end
+
+19.times do |index|
 	User.create(
 		first_name: Faker::Name.first_name,
 		last_name: Faker::Name.last_name,
@@ -43,27 +56,34 @@ User.create(first_name: "Admin", last_name: "kittens", username: "admindusite", 
 		password: "Loveeeeee",
 		email: Faker::Internet.email
 	)
-end
 
-cat_pictures_array.each do |cat_pic|
-	Item.create(
-	title: Faker::Hipster.words,
-	description: Faker::Lorem.paragraph,
-	price: Faker::Number.decimal(2),
-	image_url: cat_pic
+	Cart.create(
+		user_id: index+1,
+		order_id: rand(1..15),
+		item_id: rand(1..15),
+		quantity: rand(1..10)
 	)
+
 end
 
-20.times do
-	Order.create(stripe_id: "CustStripeMaGueule")
-end
+User.create(
+	first_name: "Admin",
+	last_name: "kittens",
+	username: "admindusite",
+	age: 95,
+	password: "VyM123456AbN",
+	email: "adminkittens@gmail.com",
+	is_admin: true
+)
 
-20.times do
-	Review.create(rating: rand(1..5), title: Faker::Book.title, content: Faker::Lorem.paragraph, item_id: rand(1..15), user_id: rand(1..15))
-end
-
-20.times do
-	Cart.create(user_id: rand(1..15), order_id: rand(1..15), item_id: rand(1..15), quantity: rand(1..10))
+600.times do
+	Review.create(
+		rating: rand(1..5),
+		title: Faker::Book.title,
+		content: Faker::Lorem.paragraph,
+		item_id: rand(1..15),
+		user_id: rand(1..15)
+	)
 end
 
 
