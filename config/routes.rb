@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :breeds
   root 'items#index'
   get '/home/contact', to: 'home#contact', as: 'contacts'
   devise_for :users,

@@ -7,6 +7,7 @@ class RegistrationsController < Devise::RegistrationsController
 
 	def update
 		new_params = params.require(:user).permit(
+			:gender,
 			:first_name,
 			:last_name,
 			:username,
@@ -23,6 +24,7 @@ class RegistrationsController < Devise::RegistrationsController
 			params[:user].delete("password")
 			params[:user].delete("password_confirmation") 
 			new_params = params.require(:user).permit(
+				:gender,
 				:first_name,
 				:last_name,
 				:username,

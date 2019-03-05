@@ -36,19 +36,27 @@ cat_pictures_array =
 	Order.create(stripe_id: "CustStripeMaGueule")
 end
 
+7.times do 
+	Breed.create(
+		name: Faker::Creature::Cat.breed
+	)
+end
+
 5.times do 
 	cat_pictures_array.each do |cat_pic|
 		Item.create(
-		title: Faker::Hipster.word,
-		description: Faker::Lorem.paragraph,
-		price: Faker::Number.decimal(2),
-		image_url: cat_pic
+			title: Faker::Creature::Cat.name,
+			breed: Breed.all.sample,
+			description: Faker::Lorem.paragraph,
+			price: Faker::Number.decimal(2),
+			image_url: cat_pic
 		)
 	end
 end
 
 19.times do |index|
 	User.create(
+		gender: Faker::Gender.binary_type,
 		first_name: Faker::Name.first_name,
 		last_name: Faker::Name.last_name,
 		username: Faker::Space.moon,
@@ -59,19 +67,20 @@ end
 
 	Cart.create(
 		user_id: index+1,
-		order_id: rand(1..15),
-		item_id: rand(1..15),
+		order: Order.all.sample,
+		item_id: Item.all.sample,
 		quantity: rand(1..10)
 	)
 
 end
 
 User.create(
+	gender: "Male",
 	first_name: "Admin",
 	last_name: "kittens",
-	username: "admindusite",
+	username: "admin",
 	age: 95,
-	password: "VyM123456AbN",
+	password: "admin",
 	email: "adminkittens@gmail.com",
 	is_admin: true
 )
@@ -81,8 +90,8 @@ User.create(
 		rating: rand(1..5),
 		title: Faker::Book.title,
 		content: Faker::Lorem.paragraph,
-		item_id: rand(1..15),
-		user_id: rand(1..15)
+		item: Item.all.sample,
+		user: User.all.sample
 	)
 end
 

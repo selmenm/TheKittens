@@ -10,7 +10,7 @@ class User < ApplicationRecord
 	has_many :reviews
 	has_one_attached :avatar
 	
-	validates :first_name, :last_name, :username, :age, :email, presence: true
+	validates :first_name, :last_name, :username, :email, presence: true
 
 	def self.find_first_by_auth_conditions(warden_conditions)
  		conditions = warden_conditions.dup
