@@ -27,10 +27,19 @@
             <li class="nav-item active"><a class="nav-link" href="<%= items_path %>">Home</a>
             </li>
             <!-- Sign up-->
-            <li class="nav-item "><a class="nav-link" href="<%=new_user_registration_path %>">Sign Up</a>
-            </li>
-            <!-- Sign In-->
-            <li class="nav-item "><a class="nav-link" href="<%= new_user_session_path %>">Sign In</a>
+            <li class="nav-item dropdown-toggle"><a class="nav-link" href="<%=new_user_registration_path %>">Connexion</a>
+              <ul class="dropdown-menu">
+              <% if user_signed_in? %>
+                <li>
+                <li class="dropdown-item has-children"><a href="<%= destroy_user_session_path%>" data-method="DELETE">Logout</a>
+                </li>
+              <% else %>
+                <li>
+                <li class="dropdown-item has-children"><a href="<%= new_user_session_path %>">Sign In</a>
+                <li class="dropdown-item has-children"><a href="<%=new_user_registration_path %>">Sign Up</a>                </li>
+              <% end %>
+                </li>
+              </ul>
             </li>
             <!-- FAQ-->
             <li class="nav-item "><a class="nav-link" href="<%= faq_path%>">FAQ</a>
