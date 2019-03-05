@@ -366,7 +366,26 @@
             <div class="col-lg-4 col-md-12 col-sm-12 mb-30">
               <div class="product-card mx-auto mb-3 mw-100">
                 <div class="product-head d-flex justify-content-between align-items-center"><span class="badge badge-danger">En vente!</span>
-                  <div class="rating-stars"><i class="far fa-star active"></i><i class="far fa-star active"></i><i class="far fa-star active"></i><i class="far fa-star active"></i><i class="far fa-star"></i>
+                  <div>
+
+                  <% sumrating = 0 %>
+                  <% @reviews.where(item_id: element.id).each do |review| %>
+                    <% sumrating += review.rating %>
+                  <% end %>
+                    <% if @reviews.where(item_id: element.id).length == 0 %>
+                      <% rate=0 %>
+                    <% else %>
+                      <% rate = sumrating/@reviews.where(item_id: element.id).length %>
+                    <% end %>
+                  <div>
+                    <div class="rating-stars"><% rate.round.times do %>
+                      <i class="fas fa-star active"></i>
+                    <% end %></div>
+                    <div class="rating-stars"><% (5 - rate.round).times do %>
+                      <i class="fas fa-star"></i>
+                    <% end %></div>
+                  </div>
+
                   </div>
                 </div><a class="product-thumb" href="shop-single.html"><img src="<%= element.image_url%>" class="img-fluid" style="height:250px"/></a>
                 <div class="product-card-body"><a class="product-meta" href="shop-categories.html">"Category"</a>

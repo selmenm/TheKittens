@@ -73,36 +73,58 @@
       <div class="card border-default">
         <div class="card-body">
           <div class="text-center">
+          <% countfive = 0 %><% countfour = 0 %><% countthree = 0 %><% counttwo = 0 %><% countone = 0 %><% sumrating = 0 %><% indice = 100/@reviews.length%>
+          <% @reviews.each do |review| %>
+            <% sumrating += review.rating %>
+            <% case review.rating %>
+              <% when 5 %>
+              <% countfive +=1 %>
+              <% when 4 %>
+              <% countfour +=1 %>
+              <% when 3 %>
+              <% countthree +=1 %>
+              <% when 2 %>
+              <% counttwo +=1 %>
+              <% when 1 %>
+              <% countone +=1 %>
+              <% else %>
+            <% end %>
+          <% end %>
+          <% rate = sumrating/@reviews.length %>
+          <h4>Note : <%= rate.round %></h4>
+          <h5 class='text-muted'>Avis : <%= @reviews.length %></h5>
+          <div><div class="rating-stars"><% rate.round.times do %>
+            <i class="fas fa-star active"></i>
+          <% end %>
+          <div class="rating-stars"><% (5 - rate.round).times do %>
+            <i class="fas fa-star"></i>
+          <% end %>
+          </div>
             <div class="d-inline align-baseline display-4 mr-1"><%= %></div>
             <div class="d-inline align-baseline text-sm text-warning mr-2">
-              <div class="rating-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-              </div>
             </div>
           </div>
-          <% @reviews.each do |review| %>
-            <% countfive = 0 %><% countfour = 0 %><% countthree = 0 %><% counttwo = 0 %><% countone = 0 %>
-            <%= countfive = 0 %><%= countfour = 0 %><%= countthree = 0 %><%= counttwo = 0 %><%= countone = 0 %>
-          <% end %>
-          <div class="pt-3"><span class="progress-label">5 stars <span class='text-muted'>- 38</span></span>
+          <div class="pt-3"><span class="progress-label">5 stars <span class='text-muted'>- <%= countfive %></span></span>
             <div class="progress progress-style-3 mb-3">
-              <div class="progress-bar bg-warning" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-            </div><span class="progress-label">4 stars <span class='text-muted'>- 10</span></span>
+              <div class="progress-bar bg-warning" role="progressbar" style="width: <%= countfive*indice %>%;" aria-valuenow="<%= countfive*indice %>" aria-valuemin="0" aria-valuemax="100"></div>
+            </div><span class="progress-label">4 stars <span class='text-muted'>- <%= countfour %></span></span>
             <div class="progress progress-style-3 mb-3">
-              <div class="progress-bar bg-warning" role="progressbar" style="width: 20%;;" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-            </div><span class="progress-label">3 stars <span class='text-muted'>- 3</span></span>
+              <div class="progress-bar bg-warning" role="progressbar" style="width: <%= countfour*indice %>%;;" aria-valuenow="<%= countfour*indice %>" aria-valuemin="0" aria-valuemax="100"></div>
+            </div><span class="progress-label">3 stars <span class='text-muted'>- <%= countthree %></span></span>
             <div class="progress progress-style-3 mb-3">
-              <div class="progress-bar bg-warning" role="progressbar" style="width: 7%;" aria-valuenow="7" aria-valuemin="0" aria-valuemax="100"></div>
-            </div><span class="progress-label">2 stars <span class='text-muted'>- 1</span></span>
+              <div class="progress-bar bg-warning" role="progressbar" style="width: <%= countthree*indice %>%;" aria-valuenow="<%= countthree*indice %>" aria-valuemin="0" aria-valuemax="100"></div>
+            </div><span class="progress-label">2 stars <span class='text-muted'>- <%= counttwo %></span></span>
             <div class="progress progress-style-3 mb-3">
-              <div class="progress-bar bg-warning" role="progressbar" style="width: 3%;" aria-valuenow="3" aria-valuemin="0" aria-valuemax="100"></div>
-            </div><span class="progress-label">1 star <span class='text-muted'>- 0</span></span>
+              <div class="progress-bar bg-warning" role="progressbar" style="width: <%= counttwo*indice %>%;" aria-valuenow="<%= counttwo*indice %>" aria-valuemin="0" aria-valuemax="100"></div>
+            </div><span class="progress-label">1 star <span class='text-muted'>- <%= countone %></span></span>
             <div class="progress progress-style-3 mb-3">
-              <div class="progress-bar bg-warning" role="progressbar" style="width: 0;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+              <div class="progress-bar bg-warning" role="progressbar" style="width: <%= countone*indice %>;" aria-valuenow="<%= countone*indice %>" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
           </div>
           <div class="pt-3"><a class="btn btn-warning btn-block" href="#" data-toggle="modal" data-target="#leaveReview">Leave a Review</a></div>
-        </div>
+        </div></div>
       </div>
+    </div>
     </div>
     <div class="col-md-8 pb-5 mb-3">
       <div class="d-flex flex-wrap justify-content-between pb-2">
@@ -133,9 +155,7 @@
             </div>
           </footer>
         </div>
-
       </div>
-      
       <% end %>
     </div>
   </div>
