@@ -80,7 +80,7 @@ User.create(
 	last_name: "kittens",
 	username: "admin",
 	age: 95,
-	password: "admin",
+	password: "aaaaaa",
 	email: "adminkittens@gmail.com",
 	is_admin: true
 )
