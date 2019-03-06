@@ -16,7 +16,7 @@
 //= require modernizr.min
 //= require vendor.min
 //= require theme.min
-//= require gulpfile
+
 
 //= require_tree .
 
