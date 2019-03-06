@@ -91,7 +91,7 @@ j = 1
 		Cart.create(
 			user_id: i+1,
 			order: Order.all.sample,
-			item_id: Item.all.sample,
+			item: Item.all.sample,
 			quantity: rand(1..10)
 		)
 		j += 1
