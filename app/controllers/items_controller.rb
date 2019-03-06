@@ -4,13 +4,15 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
-
+    @items = Item.page(params[:page]).per(6).without_count
+    @reviews = Review.all
   end
 
   # GET /items/1
   # GET /items/1.json
   def show
+    @reviews = Review.all.where(item_id: @item).order('created_at DESC')
+    @users = User.all
   end
 
   # GET /items/new
