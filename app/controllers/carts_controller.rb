@@ -65,6 +65,35 @@ class CartsController < ApplicationController
     end
   end
 
+  def payment
+    @amount = 0
+    @carts = Cart.where(user_id: current_user.id)
+    i = 0
+    Cart.where(user_id: current_user.id).each do |cartelement|
+      i +=1
+      @amount += Item.find(cartelement.item_id).price.to_i * cartelement.quantity.to_i
+    end
+    # En centimes
+    @amount *= 100
+
+    customer = Stripe::Customer.create({
+      email: params[:stripeEmail],
+      source: params[:stripeToken],
+    })
+
+    charge = Stripe::Charge.create({
+      customer: customer.id,
+      amount: @amount,
+      #description renvoie a quel nom est cree le compte (details des payments visibles sur stripe directement, notament le nom)
+      description: 'Rails Stripe customer',
+      currency: 'EUR',
+    })
+
+  rescue Stripe::CardError => e
+    flash[:error] = e.message
+    redirect_to :root
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_cart

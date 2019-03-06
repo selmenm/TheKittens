@@ -14,7 +14,7 @@
             <h5 class="featured-product-title"><%= Item.find(cartelement.item_id).title %> </h5>
             <% total += Item.find(cartelement.item_id).price.to_i %>
             <h5 class="featured-product-title"></h5>
-            <span class="featured-product-price"><%= Item.find(cartelement.item_id).price.to_i %>.00 €</span>
+            <span class="featured-product-price"><%= Item.find(cartelement.item_id).price.to_i * cartelement.quantity.to_i %>.00 €</span>
           </div>
         <% end %>
       <% end %>

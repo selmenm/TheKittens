@@ -29,5 +29,26 @@
 </table>
 
 <br>
+<%= form_tag({controller: "carts", action: "payment"}, method: "get") do %>
+  <article>
+    <% if flash[:error].present? %>
+      <div id="error_explanation">
+        <p><%= flash[:error] %></p>
+      </div>
+    <% end %>
+    <label class="amount">
+      <span></span>
+    </label>
+  </article>
 
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="Achat"
+          data-label="Checkout"
+          data-amount="500"
+          data-locale="auto">
+  </script>
+  <script>document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';</script>
+  <button type="submit" class="btn btn-accent mt-0 btn-sm">Checkout</button>
+<% end %>
 <%= link_to 'New Cart', new_cart_path %>
