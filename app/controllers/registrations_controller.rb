@@ -6,6 +6,10 @@ class RegistrationsController < Devise::RegistrationsController
 		@user = User.find(current_user.id)
 	end
 
+	def security
+		@user = User.find(current_user.id)
+	end
+
 	def update
 		new_params = params.require(:user).permit(
 			:gender,
