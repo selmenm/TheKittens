@@ -16,6 +16,5 @@
 //= require modernizr.min
 //= require vendor.min
 //= require theme.min
-
 //= require_tree .
 
