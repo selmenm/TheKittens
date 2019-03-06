@@ -29,7 +29,7 @@
 <!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page.-->
 <header class="navbar-wrapper navbar-sticky mb-3">
   <div class="d-table-cell align-middle pr-md-3">
-    <a class="navbar-brand mr-1" href="<%= root_path %>"><img src="./assets/logo.png" alt="CreateX"/></a>
+    <a class="navbar-brand mr-1" href="<%= root_path %>"><%= image_tag("logo.png") %></a>
   </div>
   <div class="d-table-cell w-100 align-middle pl-md-3">
     <div class="navbar-top d-none d-lg-flex justify-content-between align-items-center">
@@ -43,10 +43,19 @@
       </div>
       <div>
         <ul class="list-inline mb-0">
-          <a class="navbar-link" href="<%= my_profile_path %>"><i class="far fa-user"></i></a>
           <% if user_signed_in? %>
+            <a class="navbar-link" href="<%= my_profile_path %>">
+              <div>
+                <%if current_user.avatar.attached?%>
+                  <%= image_tag current_user.avatar, alt: current_user.fullname, :style => "width:30px;height:30px;border-radius:50%;" %>
+                <%else%>
+                  <%= image_tag("default_avatar.svg", :style => "width:30px;height:30px;border-radius:50%;") %> 
+                <%end%>
+              </div>
+            </a>
             <a href="<%= destroy_user_session_path%>" class="btn btn-style-6 btn-danger btn-sm" data-method="DELETE">Logout</a>
           <% else %>
+            <a class="navbar-link" href="<%= my_profile_path %>"><i class="far fa-user"></i></a>
             <li class="dropdown-toggle mr-2 navbar-link">Login or Create account
               <div class="dropdown-menu right-aligned p-3 text-center" style="min-width: 200px;">
                 <p class="text-sm opacity-70">Sign in to your account or register new one to have full control over your orders, receive bonuses and more.</p>
