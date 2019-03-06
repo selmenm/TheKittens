@@ -1,89 +1,98 @@
- <!-- Off-Canvas Shopping Cart-->
-    <div class="offcanvas-container is-triggered offcanvas-container-reverse" id="shopping-cart"><span class="offcanvas-close"><i class="fe-icon-x"></i></span>
-      <div class="px-4">
-        <h6>Your Cart</h6>
- 
+<!-- Off-Canvas Shopping Cart-->
+<div class="offcanvas-container is-triggered offcanvas-container-reverse" id="shopping-cart"><span class="offcanvas-close"><i class="fe-icon-x"></i></span>
+  <div class="px-4">
+    <h6>Your Cart</h6>
+    <div class="widget widget-cart pt-2">
+      <a class="featured-product" href="shop-single.html"></a>
+      <% if user_signed_in? %>
+        <% Cart.where(user_id: current_user.id).each do |cartelement| %>
+          <div class="featured-product-thumb"><img src="<%= Item.find(cartelement.item_id).image_url %>" alt="Product Image"/></div>
+          <div class="featured-product-info">
+            <h5 class="featured-product-title"><%= Item.find(cartelement.item_id).title %> </h5>
+            <span class="featured-product-price"><%= Item.find(cartelement.item_id).price.to_i %>€</span>
+          </div>
+          <span class="remove-product"><i class="fe-icon-x"></i></span>
+          <a class="featured-product" href="shop-single.html"></a>
+        <% end %>
+      <% end %>
+        
+      <hr class="mt-3 mb-3"><span class="text-sm text-muted">Subtotal:&nbsp;</span>
+      <div class="d-flex justify-content-between pt-3">
+        <a class="btn btn-primary btn-block btn-sm mr-2" href="cart.html">View Cart</a>
+        <a class="btn btn-accent btn-block mt-0 btn-sm" href="checkout-address.html">Checkout</a>
+      </div>
+    </div>
+  </div>
+</div>    
 
-            <div class="widget widget-cart pt-2"><a class="featured-product" href="shop-single.html">
-    
-
+<!-- Navbar: Default-->
+<!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page.-->
+<header class="navbar-wrapper navbar-sticky mb-3">
+  <div class="d-table-cell align-middle pr-md-3">
+    <a class="navbar-brand mr-1" href="<%= root_path %>"><img src="./assets/logo.png" alt="CreateX"/></a>
+  </div>
+  <div class="d-table-cell w-100 align-middle pl-md-3">
+    <div class="navbar-top d-none d-lg-flex justify-content-between align-items-center">
+      <div>
+        <a class="navbar-link mr-3" href="tel:+1212477690000"><i class="fas fa-phone"></i>+1 (212) 477 690 000</a>
+        <a class="navbar-link mr-3" href="mailto:support@kittens.com"><i class="far fa-envelope"></i>support@kittens.com</a>
+        <a class="social-btn sb-style-3 sb-twitter" href="#"><i class="fab fa-twitter"></i></a>
+        <a class="social-btn sb-style-3 sb-facebook" href="#"><i class="fab fa-facebook-f"></i></a>
+        <a class="social-btn sb-style-3 sb-pinterest" href="#"><i class="fab fa-pinterest-p"></i></a>
+        <a class="social-btn sb-style-3 sb-instagram" href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+      <div>
+        <ul class="list-inline mb-0">
+          <a class="navbar-link" href="<%= my_profile_path %>"><i class="far fa-user"></i></a>
+          <% if user_signed_in? %>
+            <a href="<%= destroy_user_session_path%>" class="btn btn-style-6 btn-danger btn-sm" data-method="DELETE">Logout</a>
+          <% else %>
+            <li class="dropdown-toggle mr-2 navbar-link">Login or Create account
+              <div class="dropdown-menu right-aligned p-3 text-center" style="min-width: 200px;">
+                <p class="text-sm opacity-70">Sign in to your account or register new one to have full control over your orders, receive bonuses and more.</p>
+                <a class="btn btn-primary btn-sm btn-block" href="<%= new_user_session_path %>">Sign In</a>
+                <p class="text-sm text-muted mt-3 mb-0">New customer? <a href="<%=new_user_registration_path %>">Register</a></p>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    <div class="navbar justify-content-end justify-content-lg-between">
+      <!-- Search-->
+      <form class="search-box" method="get">
+        <input type="text" id="site-search" placeholder="Type A or C to see suggestions"><span class="search-close"><i class="fe-icon-x"></i></span>
+      </form>
+      <!-- Main Menu-->
+      <ul class="navbar-nav d-none d-lg-block">
+        <!-- Home-->
+        <li class="nav-item active"><a class="nav-link" href="<%= root_path %>">Home</a></li>
+        <!-- Sign up-->
+        <li class="nav-item dropdown-toggle"><a class="nav-link" href="<%= new_user_registration_path %>">Connection</a>
+          <ul class="dropdown-menu">
             <% if user_signed_in? %>
-              <% Cart.where(user_id: current_user.id).each do |cartelement| %>
-                      <div class="featured-product-thumb"><img src="<%= Item.find(cartelement.item_id).image_url %>" alt="Product Image"/>
-            </div>
-                <div class="featured-product-info">
-                  <h5 class="featured-product-title"><%= Item.find(cartelement.item_id).title %> </h5><span class="featured-product-price"><%= Item.find(cartelement.item_id).price.to_i %>€</span>
-                </div><span class="remove-product"><i class="fe-icon-x"></i></span></a><a class="featured-product" href="shop-single.html">
-              <% end %>
+              <li class="dropdown-item has-children"><a href="<%= destroy_user_session_path%>" data-method="DELETE">Logout</a></li>
             <% else %>
+              <li class="dropdown-item has-children"><a href="<%= new_user_session_path %>">Sign In</a></li>
+              <li class="dropdown-item has-children"><a href="<%=new_user_registration_path %>">Sign Up</a></li>
             <% end %>
-            
-          <hr class="mt-3 mb-3"><span class="text-sm text-muted">Subtotal:&nbsp;</span><strong></strong>
-          <div class="d-flex justify-content-between pt-3"><a class="btn btn-primary btn-block btn-sm mr-2" href="cart.html">View Cart</a><a class="btn btn-accent btn-block mt-0 btn-sm" href="checkout-address.html">Checkout</a></div>
-        </div>
-      </div>
-    </div>    
-
-    <!-- Navbar: Default-->
-    <!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page.-->
-    <header class="navbar-wrapper navbar-sticky">
-      <div class="d-table-cell align-middle pr-md-3"><a class="navbar-brand mr-1" href="index.html"><img src="./assets/logo.png" alt="CreateX"/></a></div>
-      <div class="d-table-cell w-100 align-middle pl-md-3">
-        <div class="navbar-top d-none d-lg-flex justify-content-between align-items-center">
-          <div><a class="navbar-link mr-3" href="tel:+1212477690000"><i class="fas fa-phone"></i>+1 (212) 477 690 000</a><a class="navbar-link mr-3" href="mailto:support@kittens.com"><i class="far fa-envelope"></i>support@kittens.com</a><a class="social-btn sb-style-3 sb-twitter" href="#"><i class="fab fa-twitter"></i></a><a class="social-btn sb-style-3 sb-facebook" href="#"><i class="fab fa-facebook-f"></i></a><a class="social-btn sb-style-3 sb-pinterest" href="#"><i class="fab fa-pinterest-p"></i></a><a class="social-btn sb-style-3 sb-instagram" href="#"><i class="fab fa-instagram"></i></a></div>
-          <div>
-            <ul class="list-inline mb-0">
-              <li class="dropdown-toggle mr-2"><a class="navbar-link" href="account-login.html"><i class="far fa-user"></i>Login or Create account</a>
-                <div class="dropdown-menu right-aligned p-3 text-center" style="min-width: 200px;">
-                  <p class="text-sm opacity-70">Sign in to your account or register new one to have full control over your orders, receive bonuses and more.</p><a class="btn btn-primary btn-sm btn-block" href="<%= new_user_session_path %>">Sign In</a>
-                  <p class="text-sm text-muted mt-3 mb-0">New customer? <a href="<%=new_user_registration_path %>">Register</a></p>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="navbar justify-content-end justify-content-lg-between">
-          <!-- Search-->
-          <form class="search-box" method="get">
-            <input type="text" id="site-search" placeholder="Type A or C to see suggestions"><span class="search-close"><i class="fe-icon-x"></i></span>
-          </form>
-          <!-- Main Menu-->
-          <ul class="navbar-nav d-none d-lg-block">
-            <!-- Home-->
-            <li class="nav-item active"><a class="nav-link" href="<%= items_path %>">Home</a>
-            </li>
-            <!-- Sign up-->
-            <li class="nav-item dropdown-toggle"><a class="nav-link" href="<%=new_user_registration_path %>">Connexion</a>
-              <ul class="dropdown-menu">
-              <% if user_signed_in? %>
-                <li>
-                <li class="dropdown-item has-children"><a href="<%= destroy_user_session_path%>" data-method="DELETE">Logout</a>
-                </li>
-              <% else %>
-                <li>
-                <li class="dropdown-item has-children"><a href="<%= new_user_session_path %>">Sign In</a>
-                <li class="dropdown-item has-children"><a href="<%=new_user_registration_path %>">Sign Up</a>                </li>
-              <% end %>
-                </li>
-              </ul>
-            </li>
-            <!-- FAQ-->
-            <li class="nav-item "><a class="nav-link" href="<%= faq_path%>">FAQ</a>
-            </li>
-            <!-- ABOUT US-->
-            <li class="nav-item "><a class="nav-link" href="<%= about_us_path %>">About Us</a>
-            </li>
-            <!-- CONTACTS-->
-            <li class="nav-item "><a class="nav-link" href="<%= contacts_path %>">Contact</a></li>
           </ul>
-          <div>
-            <ul class="navbar-buttons d-inline-block align-middle mr-lg-2">
-              <li class="d-block d-lg-none"><a href="#mobile-menu" data-toggle="offcanvas"><i class="fe-icon-menu"></i></a></li>
-              <li><a href="#" data-toggle="search"><i class="fas fa-search"></i></a></li>
-              <li><a href="#shopping-cart" data-toggle="offcanvas"><i class="fas fa-cart-arrow-down"></i></a><span class="badge badge-danger">3</span></li>
-            </ul><a class="btn btn-gradient ml-3 d-none d-xl-inline-block" href="https://themes.getbootstrap.com/product/createx-multipurpose-template-ui-kit/" target="_blank">Buy Now</a>
-          </div>
-        </div>
+        </li>
+        <!-- FAQ-->
+        <li class="nav-item "><a class="nav-link" href="<%= faq_path%>">FAQ</a></li>
+        <!-- ABOUT US-->
+        <li class="nav-item "><a class="nav-link" href="<%= about_us_path %>">About Us</a></li>
+        <!-- CONTACTS-->
+        <li class="nav-item "><a class="nav-link" href="<%= contacts_path %>">Contact</a></li>
+      </ul>
+      <div>
+        <ul class="navbar-buttons d-inline-block align-middle mr-lg-2">
+          <li class="d-block d-lg-none"><a href="#mobile-menu" data-toggle="offcanvas"><i class="fe-icon-menu"></i></a></li>
+          <li><a href="#" data-toggle="search"><i class="fas fa-search"></i></a></li>
+          <li><a href="#shopping-cart" data-toggle="offcanvas"><i class="fas fa-cart-arrow-down"></i></a><span class="badge badge-danger">3</span></li>
+        </ul>
+        <a class="btn btn-gradient ml-3 d-none d-xl-inline-block" href="https://themes.getbootstrap.com/product/createx-multipurpose-template-ui-kit/" target="_blank">Buy Now</a>
       </div>
-    </header>
-    
+    </div>
+  </div>
+</header>

@@ -32,10 +32,53 @@ cat_pictures_array =
 	"https://image.noelshack.com/fichiers/2019/10/1/1551697081-cat20.jpg"
 ]
 
-User.create(first_name: "Admin", last_name: "kittens", username: "admindusite", age: 95, password: "VyM123456AbN", email: "adminkittens@gmail.com", is_admin: true)
-puts "Admin créé"
-19.times do
+puts "\n"*2
+puts "$" *60
+puts "Seed of table Order"
+20.times do |i|
+	print "\r#{i+1} orders created over 20"
+	Order.create(stripe_id: "CustStripeMaGueule")
+end
+puts "\nSeed of table Order has been successfully performed (20/20)"
+
+puts "\n"*2
+puts "$" *60
+puts "Seed of table Breed"
+7.times do |i|
+	print "\r#{i+1} breeds created over 7"
+	Breed.create(
+		name: Faker::Creature::Cat.breed
+	)
+end
+puts "\nSeed of table Breed has been successfully performed (7/7)"
+
+
+puts "\n"*2
+puts "$" *60
+puts "Seed of table Item"
+i = 1
+5.times do 
+	print "\r#{i+1} items created over 100"
+	cat_pictures_array.each do |cat_pic|
+		Item.create(
+			title: Faker::Creature::Cat.name,
+			breed: Breed.all.sample,
+			description: Faker::Lorem.paragraph,
+			price: Faker::Number.decimal(2),
+			image_url: cat_pic
+		)
+	end
+	i +=1
+end
+puts "\nSeed of table Item has been successfully performed (100/100)"
+
+puts "\n"*2
+puts "$" *60
+puts "\nSeed of table User and Cart (four carts per user)"
+j = 1
+20.times do |i|
 	User.create(
+		gender: Faker::Gender.binary_type,
 		first_name: Faker::Name.first_name,
 		last_name: Faker::Name.last_name,
 		username: Faker::Space.moon,
@@ -43,29 +86,51 @@ puts "Admin créé"
 		password: "Loveeeeee",
 		email: Faker::Internet.email
 	)
+	4.times do
+		print "\r #{i} users created over 20 // #{j+1} carts created over 100"
+		Cart.create(
+			user_id: i+1,
+			order: Order.all.sample,
+			item: Item.all.sample,
+			quantity: rand(1..10)
+		)
+		j += 1
+	end
 end
-puts"19 utilisateurs créés"
+puts "\nSeed of table User & Cart have been successfully performed (resp. 20/20 & 100/100)"
 
-cat_pictures_array.each do |cat_pic|
-	Item.create(
-	title: Faker::Hipster.word,
-	description: Faker::Lorem.paragraph,
-	price: Faker::Number.decimal(2),
-	image_url: cat_pic
+puts "\n"*2
+puts "$" *60
+puts "Addition of the admin (pseudo: admin & password: aaaaaa"
+User.create(
+	gender: "Male",
+	first_name: "Admin",
+	last_name: "kittens",
+	username: "admin",
+	age: 95,
+	password: "aaaaaa",
+	email: "adminkittens@gmail.com",
+	is_admin: true
+)
+puts "Creation of the admin has been successfully performed"
+
+puts "\n"*2
+puts "$" *60
+puts "Seed of table Review"
+600.times do |i|
+	print "\r#{i+1} reviews created over 600"
+	Review.create(
+		rating: rand(1..5),
+		title: Faker::Book.title,
+		content: Faker::Lorem.paragraph,
+		item: Item.all.sample,
+		user: User.all.sample
 	)
 end
-puts"20 items créés"
+puts "\nSeed of table Review has been successfully performed (600/600)"
 
-20.times do
-	Order.create(stripe_id: "CustStripeMaGueule")
-end
-puts"20 Commandes créés"
-20.times do
-	Review.create(rating: rand(1..5), title: Faker::Book.title, content: Faker::Lorem.paragraph, item_id: rand(1..15), user_id: rand(1..15))
-end
-puts"20 Avis créés"
-
-20.times do
-	Cart.create(user_id: rand(1..15), order_id: rand(1..15), item_id: rand(1..15), quantity: rand(1..10))
-end
-puts"20 paniers créés"
+puts "\n"*2
+puts "$" *60
+puts "End of Seed"
+puts "$" *60
+puts "\n"*2

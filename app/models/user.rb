@@ -8,8 +8,9 @@ class User < ApplicationRecord
 
 	has_many :carts
 	has_many :reviews
-
-	validates :first_name, :last_name, :username, :age, :email, presence: true
+	has_one_attached :avatar
+	
+	validates :first_name, :last_name, :username, :email, presence: true
 
 	def self.find_first_by_auth_conditions(warden_conditions)
  		conditions = warden_conditions.dup
@@ -18,6 +19,10 @@ class User < ApplicationRecord
  		else
  			where(conditions.to_hash).first
  		end
+	end
+
+	def fullname
+		return self.first_name + ' ' + self.last_name.upcase
 	end
 	
 end

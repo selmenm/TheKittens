@@ -3,4 +3,5 @@ class Item < ApplicationRecord
 
   has_many :carts
   has_many :reviews
+  belongs_to :breed
 end
