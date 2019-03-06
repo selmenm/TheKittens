@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h2>Vente n° <%= @order.id %></h2>
+    <p>Date : <% @order.created_at %></p>    
+    <p>Client : <%= @user.first_name %> <%= @user.last_name.upcase %> (pseudo: <% @user.pseudo %>)</p>
+    <p>Items : </p>
+    <% @items = Item.all.where(id: @cart.item_id) %>
+    <% @total = 0 %>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Prix</th>
+        <th>Quantité</th>
+        <th>URL</th>
+        <% @item.each do |element| %>
+          <% subtotal = 0 %>
+      </tr>
+      <tr>
+        <td>| <%= element.id %></td>
+        <td>| <%= element.title %></td>
+        <td>| <%= element.price %></td>
+        <td>| <% premium = @cart.where(item_id: element.id).first.quantity %><%= premium %></td>
+        <td>| <%= element.url %></td>
+      </tr>
+    </table>
+    <% subtotal = element.price.to_i * premium %>
+    <% @total += subtotal%>
+    <% end %>
+
+    <p>Prix total : <%= @total %></p>
+
+  </body>
+</html>

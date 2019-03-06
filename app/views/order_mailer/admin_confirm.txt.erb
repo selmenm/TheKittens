@@ -1,0 +1,20 @@
+Vente n° <%= @order.id %></h2>
+==========================================================
+Date : <% @order.created_at %>    
+
+Client : <%= @user.first_name %> <%= @user.last_name.upcase %> (pseudo: <% @user.pseudo %>)</p>
+
+Items : 
+
+<% @items = Item.all.where(id: @cart.item_id) %><% @total = 0 %>
+
+<% @item.each do |element| %>
+  <% subtotal = 0 %>
+
+  ID:  <%= element.id %>  |  Nom: <%= element.title %>  |  Prix: <%= element.price %>  |  Quantité: <% premium = @cart.where(item_id: element.id).first.quantity %><%= premium %>  |  URL: <%= element.url %>
+
+  <% subtotal = element.price.to_i * premium %><% @total += subtotal%>
+
+<% end %>
+
+Prix total : <%= @total %>
