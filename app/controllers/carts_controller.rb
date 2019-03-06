@@ -4,12 +4,13 @@ class CartsController < ApplicationController
   # GET /carts
   # GET /carts.json
   def index
-    @carts = Cart.all
+    @carts = Cart.where(user_id: current_user.id)
   end
 
   # GET /carts/1
   # GET /carts/1.json
   def show
+    @cart = Cart.find(params[:id])
   end
 
   # GET /carts/new
@@ -24,7 +25,9 @@ class CartsController < ApplicationController
   # POST /carts
   # POST /carts.json
   def create
+    @user = current_user.id
     @cart = Cart.new(cart_params)
+    @cart.user_id  = current_user.id
 
     respond_to do |format|
       if @cart.save
@@ -69,6 +72,6 @@ class CartsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def cart_params
-      params.require(:cart).permit(:user_id, :order_id, :item_id, :quantity)
+      params.require(:cart).permit(:item_id)
     end
 end

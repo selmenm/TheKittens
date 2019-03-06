@@ -32,17 +32,34 @@ cat_pictures_array =
 	"https://image.noelshack.com/fichiers/2019/10/1/1551697081-cat20.jpg"
 ]
 
-20.times do
+puts ""
+puts "$" *60
+puts "Seed of table Order"
+20.times do |i|
+	print "\r#{i+1} orders created over 20"
 	Order.create(stripe_id: "CustStripeMaGueule")
 end
+puts "Seed of table Order has been successfully performed (20/20)"
 
-7.times do 
+puts ""
+puts ""
+puts "$" *60
+puts "Seed of table Breed"
+7.times do |i|
+	print "\r#{i+1} breeds created over 7"
 	Breed.create(
 		name: Faker::Creature::Cat.breed
 	)
 end
+puts "Seed of table Breed has been successfully performed (7/7)"
 
+puts ""
+puts ""
+puts "$" *60
+puts "Seed of table Item"
+i = 1
 5.times do 
+	print "\r#{i+1} items created over 100"
 	cat_pictures_array.each do |cat_pic|
 		Item.create(
 			title: Faker::Creature::Cat.name,
@@ -52,9 +69,16 @@ end
 			image_url: cat_pic
 		)
 	end
+	i +=1
 end
+puts "Seed of table Item has been successfully performed (100/100)"
 
-19.times do |index|
+puts ""
+puts ""
+puts "$" *60
+puts "Seed of table User and Cart (four carts per user)"
+j = 1
+20.times do |i|
 	User.create(
 		gender: Faker::Gender.binary_type,
 		first_name: Faker::Name.first_name,
@@ -64,16 +88,23 @@ end
 		password: "Loveeeeee",
 		email: Faker::Internet.email
 	)
-
-	Cart.create(
-		user_id: index+1,
-		order: Order.all.sample,
-		item_id: Item.all.sample,
-		quantity: rand(1..10)
-	)
-
+	4.times do
+		print "\r#{i+1} users created over 20\n#{j+1} carts created over 100"
+		Cart.create(
+			user_id: i+1,
+			order: Order.all.sample,
+			item_id: Item.all.sample,
+			quantity: rand(1..10)
+		)
+		j += 1
+	end
 end
+puts "Seed of table User & Cart have been successfully performed (resp. 20/20 & 100/100)"
 
+puts ""
+puts ""
+puts "$" *60
+puts "Addition of the admin (pseudo: admin & password: aaaaaa"
 User.create(
 	gender: "Male",
 	first_name: "Admin",
@@ -84,8 +115,14 @@ User.create(
 	email: "adminkittens@gmail.com",
 	is_admin: true
 )
+puts "Creation of the admin has been successfully performed"
 
-600.times do
+puts ""
+puts ""
+puts "$" *60
+puts "Seed of table Review"
+600.times do |i|
+	print "\r#{i+1} reviews created over 600"
 	Review.create(
 		rating: rand(1..5),
 		title: Faker::Book.title,
@@ -94,6 +131,10 @@ User.create(
 		user: User.all.sample
 	)
 end
+puts "Seed of table Review has been successfully performed (600/600)"
 
-
-
+puts ""
+puts ""
+puts "$" *60
+puts "End of Seed"
+puts "$" *60
