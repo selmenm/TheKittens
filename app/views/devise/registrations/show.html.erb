@@ -51,17 +51,41 @@
     <div class="col-lg-8 pb-5">
       <%= form_for(resource, :html => { :class => "row" }, as: resource_name, url: registration_path(resource_name), html: { method: :put, :class => "row" }) do |f| %>
         <%= render 'form', f: f%>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="account-confirm-pass">Confirm Password</label>
-            <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control", placeholder: "Current Password" %>
-          </div>
-        </div>
         <div class="col-12">
           <hr class="mt-2 mb-3">
           <div class="d-flex flex-wrap justify-content-between align-items-center">
             <div class="custom-control custom-checkbox d-block"></div>
-            <%= f.submit "Update Profile", class: "btn btn-primary" %>
+            <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalCentered">Update Profile</button>
+            <div class="modal fade" id="modalCentered" tabindex="-1" role="dialog">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <% if params[:password].blank? %>
+                      <h4 class="modal-title">Confirm the change</h4>
+                    <% else %>
+                      <h4 class="modal-title">Enter your password to confirm changes</h4>
+                    <% end %>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="col-md-12">
+                      <% if params[:password].blank? %>
+                        <p><strong>You are about to change your profile information.</strong></p>
+                        <p>Please confirm to proceed</p>
+                      <% else %>
+                        <div class="form-group">
+                          <label for="account-confirm-pass">Confirm Password</label>
+                          <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control", placeholder: "Current Password" %>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <%= f.submit "Confirm", class: "btn btn-primary btn-sm" %>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       <% end %>
