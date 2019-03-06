@@ -36,23 +36,25 @@
             <div class="cart-item-product-info">
               <h4 class="cart-item-product-title"><%= cart.item.title %></h4><span><strong>Category:</strong><%= Breed.find(Item.find(cart.item.id).breed_id).name %></span>
             </div></a></div>
+
         <div class="px-3 my-3 text-center">
           <div class="cart-item-label">Quantity</div>
           <div class="count-input">
-            <select class="form-control">
-            
-              <option> 1 </option>
-              <option> 2 </option>
-              <option> 3 </option>
-              <option> 4 </option>
-              <option> 5 </option>
-              <option> 6 </option>
+            <select id="list" class="form-control">
+          
+              <option value="1"> 1 </option>
+              <option value="2"> 2 </option>
+              <option value="3"> 3 </option>
+              <option value="4"> 4 </option>
+              <option value="5"> 5 </option>
+              <option value="6"> 6 </option>
             </select>
           </div>
         </div>
+
         <div class="px-3 my-3 text-center">
           <div class="cart-item-label">Subtotal</div><span class="text-xl font-weight-medium"><% @total += cart.item.price.to_i %><%= cart.item.price.to_i %>.00€</span>
-        </div>
+        </div>        
       </div>
     <% end %>
       <!--  Subtotal-->
@@ -70,3 +72,8 @@
         <div class="col-sm-12 mb-3"><a class="btn btn-primary btn-block" href="checkout-address.html"><i class="fe-icon-credit-card"></i>&nbsp;Checkout</a></div>
       </div>
     </div>
+
+
+
+
+
