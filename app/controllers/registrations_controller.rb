@@ -1,4 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
+	helper_method :params
 	before_action :auth_user, only: [:show, :edit, :update]
 
 	def show
