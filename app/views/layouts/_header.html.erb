@@ -5,18 +5,23 @@
     <div class="widget widget-cart pt-2">
       <a class="featured-product" href="shop-single.html"></a>
       <% if user_signed_in? %>
+      <% total = 0 %>
+      <% i = 0 %>
         <% Cart.where(user_id: current_user.id).each do |cartelement| %>
+        <% i +=1 %>
           <div class="featured-product-thumb"><img src="<%= Item.find(cartelement.item_id).image_url %>" alt="Product Image"/></div>
           <div class="featured-product-info">
             <h5 class="featured-product-title"><%= Item.find(cartelement.item_id).title %> </h5>
-            <span class="featured-product-price"><%= Item.find(cartelement.item_id).price.to_i %>€</span>
+            <% total += Item.find(cartelement.item_id).price.to_i %>
+            <h5 class="featured-product-title"></h5>
+            <span class="featured-product-price"><%= Item.find(cartelement.item_id).price.to_i %>.00 €</span>
           </div>
           <span class="remove-product"><i class="fe-icon-x"></i></span>
           <a class="featured-product" href="shop-single.html"></a>
         <% end %>
       <% end %>
         
-      <hr class="mt-3 mb-3"><span class="text-sm text-muted">Subtotal:&nbsp;</span>
+      <hr class="mt-3 mb-3"><span class="text-sm text-muted">Total Price: <%= total %> .00 € with <%= i %> articles</span>
       <div class="d-flex justify-content-between pt-3">
         <a class="btn btn-primary btn-block btn-sm mr-2" href="cart.html">View Cart</a>
         <a class="btn btn-accent btn-block mt-0 btn-sm" href="checkout-address.html">Checkout</a>
@@ -89,7 +94,7 @@
         <ul class="navbar-buttons d-inline-block align-middle mr-lg-2">
           <li class="d-block d-lg-none"><a href="#mobile-menu" data-toggle="offcanvas"><i class="fe-icon-menu"></i></a></li>
           <li><a href="#" data-toggle="search"><i class="fas fa-search"></i></a></li>
-          <li><a href="#shopping-cart" data-toggle="offcanvas"><i class="fas fa-cart-arrow-down"></i></a><span class="badge badge-danger">3</span></li>
+          <li><a href="#shopping-cart" data-toggle="offcanvas"><i class="fas fa-cart-arrow-down"></i></a><span class="badge badge-danger"><%= i %></span></li>
         </ul>
         <a class="btn btn-gradient ml-3 d-none d-xl-inline-block" href="https://themes.getbootstrap.com/product/createx-multipurpose-template-ui-kit/" target="_blank">Buy Now</a>
       </div>
