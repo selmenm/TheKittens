@@ -80,7 +80,7 @@ Rails.application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   #Configure active storage for amazon service 
-  config.active_storage.service = :amazon
+  # config.active_storage.service = :amazon
 
 
   # Use a different logger for distributed setups.
