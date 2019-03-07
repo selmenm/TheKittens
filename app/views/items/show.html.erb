@@ -4,12 +4,13 @@
     <!-- Product Gallery-->
     <div class="col-md-6 pb-5">
       <div class="product-gallery"><span class="badge badge-danger text-md font-weight-normal">En vente!</span>
-        <div class="product-carousel owl-carousel"><a class="gallery-item" href="#" data-fancybox="gallery1" data-hash="one"><img src="<%= @item.image_url%>"></a><a class="gallery-item" href="img/shop/single/02.jpg" data-fancybox="gallery1" data-hash="two"><img src="img/shop/single/02.jpg" alt="Product"></a><a class="gallery-item" href="img/shop/single/03.jpg" data-fancybox="gallery1" data-hash="three"><img src="img/shop/single/03.jpg" alt="Product"></a><a class="gallery-item" href="img/shop/single/04.jpg" data-fancybox="gallery1" data-hash="four"><img src="img/shop/single/04.jpg" alt="Product"></a></div>
+        <div class="product-carousel owl-carousel"><a data-fancybox="gallery1" data-hash="one"><img src="<%= @item.image_url%>"></a>
+        </div>
       </div>
     </div>
     <!-- Product Info-->
     <div class="col-md-6 pb-5">
-      <div class="product-meta"><i class="fe-icon-bookmark"></i><a href="#">Categorie, </a><a href="#">Catégorie</a></div>
+      <div class="product-meta"><i class="fas fa-bookmark"></i><a href="#">Categorie, </a><a href="#">Catégorie</a></div>
       <h2 class="h3 font-weight-bold"><%= @item.title %></h2>
       <h3 class="h4 font-weight-light"><%= @item.price.to_i %>€</h3>
       <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta voluptatibus quos ea dolore rem, molestias laudantium et explicabo...<a href='#details' class='scroll-to'>More info</a></p>
@@ -38,10 +39,10 @@
         </div>
         <div class="mt-2 mb-2"><span class="text-muted d-inline-block align-middle mb-2">Share:&nbsp;&nbsp;</span>
           <div class="d-inline-block">
-          <a class="social-btn sb-style-3 sb-facebook my-1" href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a class="social-btn sb-style-3 sb-twitter my-1" href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fab fa-twitter"></i></a>
-          <a class="social-btn sb-style-3 sb-instagram my-1" href="#" data-toggle="tooltip" data-placement="top" title="Instagram"><i class="fab fa-instagram"></i></a>
-          <a class="social-btn sb-style-3 sb-google-plus my-1 mr-0" href="#" data-toggle="tooltip" data-placement="top" title="Google +"><i class="fab fa-google-plus-g"></i></a></div>
+          <a class="social-btn sb-style-3 sb-facebook my-1" href="https://www.facebook.com/" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a class="social-btn sb-style-3 sb-twitter my-1" href="https://twitter.com/login?lang=fr" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fab fa-twitter"></i></a>
+          <a class="social-btn sb-style-3 sb-instagram my-1" href="https://www.instagram.com/?hl=fr" data-toggle="tooltip" data-placement="top" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a class="social-btn sb-style-3 sb-google-plus my-1 mr-0" href="https://plus.google.com/about?hl=fr" data-toggle="tooltip" data-placement="top" title="Google +"><i class="fab fa-google-plus-g"></i></a></div>
         </div>
       </div>
     </div>
@@ -51,21 +52,26 @@
 <div class="bg-secondary pt-5 pb-4" id="details">
   <div class="container py-2">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-lg-3 col-md-6">
         <h3 class="h6">Details</h3>
         <p class="mb-4 pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.</p>
-        <h3 class="h6">Features</h3>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h3 class="h6">Features</h3>
         <p class="mb-4 pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.</p>
       </div>
-      <div class="col-md-6">
+      <div class="col-lg-3 col-md-6">
         <h3 class="h6">Specifications</h3>
         <p class="mb-4 pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.</p>
-        <h3 class="h6">Shipping Options:</h3>
+      </div>
+      <div class="col-lg-3 col-md-6">
+          <h3 class="h6">Shipping Options:</h3>
         <p class="mb-4 pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.</p>
       </div>
     </div>
   </div>
 </div>
+
 <!-- Reviews-->
 <div class="container pt-5">
   <div class="row pt-2">
@@ -104,59 +110,112 @@
             <div class="d-inline align-baseline text-sm text-warning mr-2">
             </div>
           </div>
-          <div class="pt-3"><span class="progress-label">5 stars <span class='text-muted'>- <%= countfive %></span></span>
-            <div class="progress progress-style-3 mb-3">
-              <div class="progress-bar bg-warning" role="progressbar" style="width: <%= countfive*indice %>%;" aria-valuenow="<%= countfive*indice %>" aria-valuemin="0" aria-valuemax="100"></div>
-            </div><span class="progress-label">4 stars <span class='text-muted'>- <%= countfour %></span></span>
-            <div class="progress progress-style-3 mb-3">
-              <div class="progress-bar bg-warning" role="progressbar" style="width: <%= countfour*indice %>%;;" aria-valuenow="<%= countfour*indice %>" aria-valuemin="0" aria-valuemax="100"></div>
-            </div><span class="progress-label">3 stars <span class='text-muted'>- <%= countthree %></span></span>
-            <div class="progress progress-style-3 mb-3">
-              <div class="progress-bar bg-warning" role="progressbar" style="width: <%= countthree*indice %>%;" aria-valuenow="<%= countthree*indice %>" aria-valuemin="0" aria-valuemax="100"></div>
-            </div><span class="progress-label">2 stars <span class='text-muted'>- <%= counttwo %></span></span>
-            <div class="progress progress-style-3 mb-3">
-              <div class="progress-bar bg-warning" role="progressbar" style="width: <%= counttwo*indice %>%;" aria-valuenow="<%= counttwo*indice %>" aria-valuemin="0" aria-valuemax="100"></div>
-            </div><span class="progress-label">1 star <span class='text-muted'>- <%= countone %></span></span>
-            <div class="progress progress-style-3 mb-3">
-              <div class="progress-bar bg-warning" role="progressbar" style="width: <%= countone*indice %>;" aria-valuenow="<%= countone*indice %>" aria-valuemin="0" aria-valuemax="100"></div>
+          <div class="pt-3">
+              <span class="progress-label">5 stars <span class='text-muted'>- <%= countfive %></span></span>
+                <div class="progress progress-style-3 mb-3">
+                  <div class="progress-bar bg-warning" role="progressbar" style="width: <%= countfive*indice %>%;" aria-valuenow="<%= countfive*indice %>" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              <span class="progress-label">4 stars <span class='text-muted'>- <%= countfour %></span></span>
+                <div class="progress progress-style-3 mb-3">
+                  <div class="progress-bar bg-warning" role="progressbar" style="width: <%= countfour*indice %>%;;" aria-valuenow="<%= countfour*indice %>" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              <span class="progress-label">3 stars <span class='text-muted'>- <%= countthree %></span></span>
+                <div class="progress progress-style-3 mb-3">
+                  <div class="progress-bar bg-warning" role="progressbar" style="width: <%= countthree*indice %>%;" aria-valuenow="<%= countthree*indice %>" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              <span class="progress-label">2 stars <span class='text-muted'>- <%= counttwo %></span></span>
+                <div class="progress progress-style-3 mb-3">
+                  <div class="progress-bar bg-warning" role="progressbar" style="width: <%= counttwo*indice %>%;" aria-valuenow="<%= counttwo*indice %>" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              <span class="progress-label">1 stars <span class='text-muted'>- <%= countone %></span></span>
+                <div class="progress progress-style-3 mb-3">
+                  <div class="progress-bar bg-warning" role="progressbar" style="width: <%= countone*indice %>%;" aria-valuenow="<%= countone*indice %>" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+          </div>
+
+          <!-- Modal -->
+          <div class="pt-3"><a class="btn btn-warning btn-block" data-toggle="modal" data-target="#leaveReview">Leave a Review</a></div>
+          <div class="modal fade" id="leaveReview" role="dialog">
+            <div class="modal-dialog">
+            
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Leave a review!</h4>
+                </div>
+                <div class="modal-body">
+                  
+                
+                <!-- A compléter -->
+
+                
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+              
             </div>
           </div>
-          <div class="pt-3"><a class="btn btn-warning btn-block" href="#" data-toggle="modal" data-target="#leaveReview">Leave a Review</a></div>
-        </div></div>
+        
+        
+          </div>
+        </div>
       </div>
     </div>
     </div>
+
     <div class="col-md-8 pb-5 mb-3">
       <div class="d-flex flex-wrap justify-content-between pb-2">
         <h3 class="h4">Latest Reviews</h3><a class="btn btn-primary btn-sm" href="#">View All Reviews</a>
       </div>
       <!-- Review-->
-      <% @reviews.each do |review| %>
-      <div class="blockquote comment mb-4">
-        <div class="d-sm-flex mb-2">
-          <h6 class="text-lg mb-0"><%= review.title %></h6><span class="d-none d-sm-inline mx-3 text-muted opacity-50">|</span>
-          <div class="rating-stars"><% review.rating.times do %>
-            <i class="fas fa-star active"></i>
-          <% end %>
-          <div class="rating-stars"><% (5- review.rating).times do %>
-            <i class="fas fa-star"></i>
-          <% end %>
-          </div>
-          <div><%= review.content %></div>
-          <footer class="testimonial-footer">
-            <div class="d-table-cell align-middle pl-2">
-              <div class="blockquote-footer"> <% @users.each do |user| %>
-                <% if user.id == review.user_id %> 
-                <%= user.username %> 
-              <% end %>
-              <% end %>
-                <cite> <%= review.created_at %></cite>
+      <div class="blockquote comment mb-4 row">
+        <% @reviews.each do |review| %>
+          <div class="card-body">
+            
+            <div class="d-flex flex-wrap justify-content-between pb-2">
+            <div class="col-9">
+              <h6 class="text-lg mb-0"><%= review.title %></h6></div>
+
+              
+              <!-- Stars counter -->
+              <div class="col-3">
+                <div class="rating-stars" >
+                  <% review.rating.times do %>
+                    <i class="fas fa-star active"></i>
+                  <% end %>
+                  <% (5- review.rating).times do %>
+                    <i class="fas fa-star"></i>
+                  <% end %>
+                </div>
               </div>
             </div>
-          </footer>
+
+            <div class="d-flex flex-wrap justify-content-between pb-2">   
+              <div class="col-9">
+                <%= review.content %>
+              </div>
+              
+              <div class=" col-3">
+                <div class="d-table-cell align-middle pl-2">
+                  <div class="blockquote-footer"> 
+                    <% @users.each do |user| %>
+                      <% if user.id == review.user_id %> 
+                        <%= user.username %> 
+                      <% end %>
+                    <% end %>
+                    <cite> <%= review.created_at.strftime("%FT") %></cite>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        <% end %>
+      
         </div>
       </div>
-      <% end %>
+    
     </div>
-  </div>
-</div>
