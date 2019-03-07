@@ -32,7 +32,7 @@
     <% @carts.each do |cart| %>
       <div class="cart-item d-md-flex justify-content-between"><span class="remove-item"><i class="far fa-times-circle"></i></span>
         <div class="px-3 my-3"><a class="cart-item-product" href="shop-single.html">
-            <div class="cart-item-product-thumb"><img src="<%= cart.item.image_url %>" alt="Product"></div>
+            <div class="cart-item-product-thumb"><img class="test" src="<%= cart.item.image_url %>" alt="Product"></div>
             <div class="cart-item-product-info">
               <h4 class="cart-item-product-title"><%= cart.item.title %></h4><span><strong>Category:</strong><%= Breed.find(Item.find(cart.item.id).breed_id).name %></span>
             </div></a></div>
@@ -43,8 +43,8 @@
 
 
                 <div class="btn-group" role="group" aria-label="Basic example">
-                  <button type="button" class="btn btn-secondary"><i class="fas fa-minus"></i></button>
-                  <button type="button" class="btn btn-secondary"><i class="fas fa-plus"></i></button>
+                  <button type="button" class="btn btn-secondary-minus"><i class="fas fa-minus"></i></button>
+                  <button type="button" class="btn btn-secondary-plus"><i class="fas fa-plus"></i></button>
                 </div>
         
         </div>
@@ -70,7 +70,30 @@
       </div>
     </div>
 
+<script>
+ // const $minus = $(document.querySelectorAll(".btn-secondary-minus"))
+ // const $plus = $(document.querySelectorAll(".btn-secondary-plus"))
 
+//  const $image = $(document.querySelectorAll(".test"))
+
+//      $(document).ready(function(){
+
+
+  //      $minus.on('click', () =>{
+
+    //      $image.hide();
+  //      });
+
+ //      $plus.on('click', () =>{
+
+    //      $image.toggle();
+  //      });
+ 
+//      });
+
+
+
+</script>
 
 
 
