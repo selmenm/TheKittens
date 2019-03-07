@@ -184,10 +184,10 @@
 
                     
                     <%= form_for Cart.new do |f| %>
-                    <%= f.hidden_field :item_id, :value => element.id %>
-                    <%= button_tag(type: "submit", class: "product-button") do %>
-                      <i class="fas fa-cart-plus"></i>
-                    <% end %>
+                      <%= f.hidden_field :item_id, :value => element.id %>
+                      <%= button_tag(type: "submit", class: "product-button") do %>
+                        <i class="fas fa-cart-plus"></i>
+                      <% end %>
                     <% end %>
 
 

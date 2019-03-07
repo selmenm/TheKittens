@@ -22,7 +22,8 @@
             <h5 class="author-card-name text-lg"><%=@user.fullname%></h5><span class="author-card-position">Joined <%=@user.created_at.strftime("%B %d, %Y")%></span>      
           </div>
         </div>
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, multipart: true) do |f| %> 
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, multipart: true) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %> 
           <div class="form-group align-items-center mb-1">
             <label class="col-form-label text-muted">Change your profile picture</label>
             <div class="col-12">
@@ -64,6 +65,7 @@
         <div class="tab-pane fade active show" id="profileInformation" role="tabpanel">
           <h2>Update your profile information</h2>
           <%= form_for(resource, :html => { :class => "row" }, as: resource_name, url: registration_path(resource_name), html: { method: :put, :class => "row" }) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
             <%= render 'form', f: f%>
             <div class="col-12">
               <hr class="mt-2 mb-3">
@@ -77,6 +79,7 @@
         <div class="tab-pane fade" id="profileCredentials" role="tabpanel">
           <h2>Update your credentials</h2>
           <%= form_for(resource, :html => { :class => "row" }, as: resource_name, url: registration_path(resource_name), html: { method: :put, :class => "row" }) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
             <%= render 'password', f: f%>
             <div class="col-12">
               <hr class="mt-2 mb-3">

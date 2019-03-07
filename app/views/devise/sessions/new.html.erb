@@ -7,7 +7,7 @@
           <div class="d-sm-flex justify-content-between pb-2"><a class="btn btn-secondary btn-sm btn-block my-2 mr-3" href="#"><i class="fab fa-facebook-f"></i>&nbsp;Login</a><a class="btn btn-secondary btn-sm btn-block my-2 mr-3" href="#"><i class="fab fa-twitter"></i>&nbsp;Login</a><a class="btn btn-secondary btn-sm btn-block my-2 mr-3" href="#"><i class="fab fa-linkedin-in"></i>&nbsp;Login</a></div>
           <hr>
           <h3 class="h5 pt-4 pb-2">Or use the form below</h3>
-            <%= render "devise/shared/error_messages", resource: resource %>
+            <div class="col-12"><%= render "devise/shared/error_messages", resource: resource %></div>
             <div class="input-group form-group">
               <div class="input-group-prepend"><span class="input-group-text"><i class="far fa-envelope"></i></span></div>
               <%= f.text_field :pseudo, autofocus: true, autocomplete: "login", class: "form-control", placeholder: "Email or Username"%>
