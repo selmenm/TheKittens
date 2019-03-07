@@ -13,26 +13,28 @@
     
 
     <% @total = 0 %>
-    <% @carts.each do |cart| %>
+    <% @carts.order(:id).each do |cart| %>
       <div class="cart-item d-md-flex justify-content-between">
         <a class="featured-product" data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/carts/<%= cart.id %>">
         <span class="remove-item"><i class="far fa-times-circle"></i></span></a>
         <div class="px-3 my-3"><a class="cart-item-product" href="shop-single.html">
           <div class="cart-item-product-thumb"><img class="test" src="<%= cart.item.image_url %>" alt="Product"></div>
           <div class="cart-item-product-info">
-            <h4 class="cart-item-product-title"><%= cart.item.title %></h4><span><strong>Category:</strong><%= Breed.find(Item.find(cart.item.id).breed_id).name %></span>
+            <h4 class="cart-item-product-title"><%= cart.item.title %></h4>
+            <span><strong>Category:</strong><%= Breed.find(Item.find(cart.item.id).breed_id).name %></span>
+            <span><strong>Unit Price:</strong><%= cart.item.price.to_i %>.00€</span>
             </div></a></div>
 
         <div class="px-3 my-3 text-center">
-          <div class="cart-item-label">Quantity</div>
+          <div class="cart-item-label my-quantity">Quantity: <%= cart.quantity %> </div>
             <div class="btn-group" role="group" aria-label="Basic example">
-              <button type="button" class="btn btn-secondary-minus"><i class="fas fa-minus"></i></button>
-              <button type="button" class="btn btn-secondary-plus"><i class="fas fa-plus"></i></button>
+              <%= link_to raw("<i class=\"fas fa-minus\"></i>"), removefromcart_path(cart.id), method: "get", class: "btn btn-secondary cminus" %>
+              <%= link_to raw("<i class=\"fas fa-plus\"></i>"), addtocart_path(cart.id), method: "get", class: "btn btn-secondary cplus" %>
             </div>
         </div>
-
+        <% @total += cart.item.price.to_i %>
         <div class="px-3 my-3 text-center">
-          <div class="cart-item-label">Subtotal</div><span class="text-xl font-weight-medium"><% @total += cart.item.price.to_i %><%= cart.item.price.to_i %>.00€</span>
+          <div class="cart-item-label">Subtotal</div><span class="text-xl font-weight-medium "><%= cart.quantity.to_i * cart.item.price.to_i %>.00€</span>
         </div>        
       </div>
     <% end %>
@@ -74,25 +76,38 @@
     </div>
 
 <script>
- // const $minus = $(document.querySelectorAll(".btn-secondary-minus"))
- // const $plus = $(document.querySelectorAll(".btn-secondary-plus"))
 
-//  const $image = $(document.querySelectorAll(".test"))
+const $minus = $(document.querySelectorAll(".cminus"))
+const $plus = $(document.querySelectorAll(".cplus"))
+const $image = $(document.querySelectorAll(".test"))
+const $myQuant = $(document.querySelectorAll(".my-quantity".innerHTML))
+console.log($myQuant)
 
-//      $(document).ready(function(){
+const $price = $(document.querySelectorAll(".font-weight-medium")[2].innerHTML)
+a = (document.querySelectorAll(".font-weight-medium")[2].innerHTML)
+console.log(typeof a)
+var myNumberPrice = parseInt(a)
+console.log(typeof myNumberPrice)
+console.log(myNumberPrice * 3)
 
 
-  //      $minus.on('click', () =>{
 
-    //      $image.hide();
-  //      });
+$(document).ready(function(){
 
- //      $plus.on('click', () =>{
+  $minus.on('click', () =>{
 
-    //      $image.toggle();
-  //      });
- 
-//      });
+    $image.hide();
+  });
+
+  $plus.on('click', () =>{
+
+    $image.toggle();
+});
+
+    });
+
+
+
 
 
 
