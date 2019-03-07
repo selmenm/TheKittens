@@ -15,3 +15,52 @@
  *= require theme.min
  *= require vendor.min
  */
+
+ .iziToast.iziToast-color-red {
+	background: white;
+	border-color: #ff5252;
+}
+
+ .iziToast.iziToast-color-orange {
+	background: white;
+	border-color: #fc8c3a;
+}
+
+ .iziToast.iziToast-color-blue {
+	background: white;
+	border-color: #5695fe;
+}
+
+ .iziToast.iziToast-color-green {
+	background: white;
+	border-color: #33cb81;
+}
+
+ .iziToast-red {
+	color: #ff5252 !important;
+}
+
+ .iziToast-orange {
+	color: #fc8c3a !important;
+}
+
+ .iziToast-blue {
+	color: #5695fe !important;
+}
+
+ .iziToast-green {
+	color: #33cb81 !important;
+}
+
+.btn-popup{
+	background-color: white !important;
+    border: none;
+    outline:none;
+    cursor:pointer;
+}
+.btn-popup:hover .btn-popup:active .btn-popup:focus {
+	background-color: white !important;
+    border: none;
+    outline: none !important;
+}
+button:focus { outline: none; }

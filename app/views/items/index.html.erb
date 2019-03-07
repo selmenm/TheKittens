@@ -170,9 +170,14 @@
                     </div>
                   </div>
                 </div>
+<<<<<<< HEAD
                 
                 <%= link_to element, controller: "items", action: "show", id: element do %>
                   <img src="<%= element.image_url%>" class="img-fluid product-thumb mx-auto" style="height:250px"/>
+=======
+                <%= link_to element do %>
+                  <img src="<%= element.image_url%>" class="img-fluid product-thumb w-100" style="height:250px"/>
+>>>>>>> 79127efed5971e12553d1577c69818535a79cd55
                <% end %>
                 <div class="product-card-body"><a class="product-meta">"Category"</a>
                   <h5 class="product-title">
@@ -189,10 +194,10 @@
 
                     <!-- Bouton cart -->
                     <%= form_for Cart.new do |f| %>
-                    <%= f.hidden_field :item_id, :value => element.id %>
-                    <%= button_tag(type: "submit", class: "product-button") do %>
-                      <i class="fas fa-cart-plus"></i>
-                    <% end %>
+                      <%= f.hidden_field :item_id, :value => element.id %>
+                      <%= button_tag(type: "submit", class: "product-button") do %>
+                        <i class="fas fa-cart-plus"></i>
+                      <% end %>
                     <% end %>
 
 

@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::Base
 	before_action :configure_permitted_parameters, if: :devise_controller?
 
+	def referer
+  		@env['HTTP_REFERER'] || '/'
+	end
+
   protected
 
   def configure_permitted_parameters

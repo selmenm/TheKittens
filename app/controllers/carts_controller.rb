@@ -1,10 +1,11 @@
 class CartsController < ApplicationController
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
+  before_action :auth_user
 
   # GET /carts
   # GET /carts.json
   def index
-    @carts = Cart.where(user_id: current_user.id)
+    @carts = Cart.where(user_id: current_user.id).where(order_id: nil)
   end
 
   # GET /carts/1
@@ -60,7 +61,7 @@ class CartsController < ApplicationController
   def destroy
     @cart.destroy
     respond_to do |format|
-      format.html { redirect_to root_path, notice: 'Cart was successfully destroyed.' }
+      format.html { redirect_to request.referer, notice: 'Cart was successfuuuuuully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -73,7 +74,7 @@ class CartsController < ApplicationController
 
     Cart.where(user_id: current_user.id).each do |item_in_cart|
       i +=1
-      @amount += Item.find(item_in_cart.item_id).price.to_i * item_in_cart.quantity.to_i
+      @amount += item_in_cart.total_per_item
     end
 
     # En centimes
@@ -96,12 +97,32 @@ class CartsController < ApplicationController
     @order.save
     Cart.where(user_id: current_user.id).each do |item_in_cart|
         item_in_cart.update(order_id: @order.id)
-    end
-    
+    end    
 
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to :root
+  end
+
+  def additem
+    @cart = Cart.find(params[:id])
+    @qty = @cart.quantity + 1
+    @cart.update(quantity: @qty)
+    respond_to do |format|
+      format.html { redirect_to request.referer, notice: 'Cart was successfuuuuuully saved.' }
+      format.json { head :no_content }
+    end
+  end
+
+  def removeitem
+    @cart = Cart.find(params[:id])
+    @qty = @cart.quantity - 1
+    @cart.update(quantity: @qty)
+    respond_to do |format|
+      format.html { redirect_to request.referer, notice: 'Cart was successfuuuuuully saved.' }
+      format.json { head :no_content }
+    end
+
   end
 
   private
@@ -113,5 +134,8 @@ class CartsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def cart_params
       params.require(:cart).permit(:item_id)
+    end
+    def auth_user
+      redirect_to new_user_session_path unless user_signed_in?
     end
 end
