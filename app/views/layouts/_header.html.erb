@@ -7,7 +7,7 @@
       <% if user_signed_in? %>
         <% total = 0 %>
         <% i = 0 %>
-        <% Cart.where(user_id: current_user.id).each do |cartelement| %>
+        <% Cart.where(user_id: current_user.id).where(order_id: nil).order(:id).each do |cartelement| %>
           <a class="featured-product" data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/carts/<%= cartelement.id %>"><span class="remove-product"><i class="far fa-times-circle"></i></span></a>
           <% i +=1 %>
           <div class="featured-product-thumb"><img src="<%= Item.find(cartelement.item_id).image_url %>" alt="Product Image"/></div>
