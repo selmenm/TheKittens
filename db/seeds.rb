@@ -32,14 +32,14 @@ cat_pictures_array =
 	"https://image.noelshack.com/fichiers/2019/10/1/1551697081-cat20.jpg"
 ]
 
-puts "\n"*2
-puts "$" *60
-puts "Seed of table Order"
-20.times do |i|
-	print "\r#{i+1} orders created over 20"
-	Order.create(stripe_id: "CustStripeMaGueule")
-end
-puts "\nSeed of table Order has been successfully performed (20/20)"
+# puts "\n"*2
+# puts "$" *60
+# puts "Seed of table Order"
+# 20.times do |i|
+# 	print "\r#{i+1} orders created over 20"
+# 	Order.create(stripe_id: "CustStripeMaGueule")
+# end
+# puts "\nSeed of table Order has been successfully performed (20/20)"
 
 puts "\n"*2
 puts "$" *60
