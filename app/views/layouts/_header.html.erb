@@ -1,12 +1,13 @@
 <!-- Off-Canvas Shopping Cart-->
-<div class="offcanvas-container is-triggered offcanvas-container-reverse" id="shopping-cart"><span class="offcanvas-close"><i class="far fa-times-circle"></i></span>
+<
+<div class="offcanvas-container is-triggered offcanvas-container-reverse " id="shopping-cart"><span class="offcanvas-close"><i class="far fa-times-circle"></i></span>
   <div class="px-4">
     <h6>Your Cart</h6>
     <div class="widget widget-cart pt-2">
       <% if user_signed_in? %>
         <% total = 0 %>
         <% i = 0 %>
-        <% Cart.where(user_id: current_user.id).each do |cartelement| %>
+        <% Cart.where(user_id: current_user.id).where(order_id: nil).order(:id).each do |cartelement| %>
           <a class="featured-product" data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/carts/<%= cartelement.id %>"><span class="remove-product"><i class="far fa-times-circle"></i></span></a>
           <% i +=1 %>
           <div class="featured-product-thumb"><img src="<%= Item.find(cartelement.item_id).image_url %>" alt="Product Image"/></div>
@@ -21,8 +22,7 @@
 
       <span class="text-sm text-muted">Total Price: <%= total %> .00 € with <%= i %> articles</span>
       <div class="d-flex justify-content-between ptexi-3">
-        <a class="btn btn-primary btn-block btn-sm mr-2" href="cart.html">View Cart</a>
-        <a class="btn btn-accent btn-block mt-0 btn-sm" href="checkout-address.html">Checkout</a>
+        <a class="btn btn-primary btn-block btn-sm mr-2" href="<%= carts_path%>">View Cart / Checkout</a>
       </div>
     </div>
   </div>
@@ -103,8 +103,10 @@
           <li><a href="#" data-toggle="search"><i class="fas fa-search"></i></a></li>
           <li><a href="#shopping-cart" data-toggle="offcanvas"><i class="fas fa-cart-arrow-down"></i></a><span class="badge badge-danger"><%= i %></span></li>
         </ul>
-        <a class="btn btn-gradient ml-3 d-none d-xl-inline-block" href="https://themes.getbootstrap.com/product/createx-multipurpose-template-ui-kit/" target="_blank">Buy Now</a>
       </div>
     </div>
   </div>
 </header>
+
+
+
