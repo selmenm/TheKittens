@@ -1,0 +1,15 @@
+Salut <%= @user.first_name %> !
+==========================================================
+ 
+Vous venez de réaliser un achat sur <%= @url %>.
+ 
+Voici les URLs des images que vous venez d'acquérir :
+ 
+<% @cart.each do |elment| %>
+
+<%= link_to(gift.title, gift.image_url) %> <%= "(Vous pous pouvez télécharger cette image #{element.quantity} fois)" unless element.quantity == 1 %>.
+
+<% end %>
+
+
+À très vite sur <%= @url %> !
