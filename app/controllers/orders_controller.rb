@@ -37,14 +37,6 @@ class OrdersController < ApplicationController
     end
   end
 
-  after_create :confirmation
-
-  def confirmation
-    OrderMail.confirm_cart(self).deliver_now
-    OrderMail.admin_confirm(self).deliver_now
-  end
-
-
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
   def update

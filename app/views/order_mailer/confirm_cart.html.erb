@@ -7,11 +7,11 @@
     <h1>Bonjour <%= @user.first_name %> !</h1>
     <p>Vous venez de réaliser un achat sur <%= @url %>.</p>
     <p>Voici les URLs des images que vous venez d'acquérir :</p>
-    <% items = Item.all.where(id: @cart.item_id) %>
-    <% items.each do |element| %>
-    <ul>
-        <li><%= element.url %></li>
-    </ul>
+    <% @cart.each do |element| %>
+      <ul>
+        <% picture = Item.find(element.item_id) %>
+        <li><%= link_to(picture.title, picture.image_url) %> <%= "(Vous pous pouvez télécharger cette image #{element.quantity} fois)" unless element.quantity == 1 %></li>
+      </ul>
     <% end %>
     <p> À très vite sur <%= @url %> !
   </body>
