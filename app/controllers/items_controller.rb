@@ -4,12 +4,15 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
+    @items = Item.page(params[:page]).per(6).without_count
+    @reviews = Review.all
   end
 
   # GET /items/1
   # GET /items/1.json
   def show
+    @reviews = Review.all.where(item_id: @item).order('created_at DESC')
+    @users = User.all
   end
 
   # GET /items/new
@@ -28,7 +31,7 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to @item, notice: 'Item was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Item was successfully created.' }
         format.json { render :show, status: :created, location: @item }
       else
         format.html { render :new }

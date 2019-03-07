@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <style>
+      table {border-collapse: collapse;width: 100%;}
+      td, th {text-align: left;padding: 8px;}
+      tr:nth-child(even) {background-color: #dddddd;}
+    </style>
+  </head>
+  <body>
+    <h2>Vente n° <%= @order.id %></h2>
+    <p>Date : <%= @order.created_at %></p>    
+    <p>Client : <%= @user.first_name %> <%= @user.last_name.upcase %> (pseudo: <%= @user.username %>)</p>
+    <p>Items : </p>
+
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Prix</th>
+        <th>Quantité</th>
+        <th>URL</th>
+      </tr>
+        <% @total = 0 %>
+        <% @cart.each do |element| %>
+          <% picture = Item.find(element.item_id) %>
+      <tr>
+        <td><%= picture.id %></td>
+        <td><%= picture.title %></td>
+        <td><%= picture.price %></td>
+        <td><%= element.quantity %></td>
+        <td><%= link_to("Lien", picture.image_url) %></td>
+      </tr>
+      <% @total += picture.price * element.quantity %>
+      <% end %>
+    </table>
+
+
+    <p>Prix total : <%= @total %>€</p>
+
+  </body>
+</html>

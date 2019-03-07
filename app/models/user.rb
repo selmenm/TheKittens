@@ -4,11 +4,13 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable
+         :recoverable, :rememberable, :validatable#, :confirmable
 
 	has_many :carts
-
-	validates :first_name, :last_name, :username, :age, :email, presence: true
+	has_many :reviews
+	has_one_attached :avatar
+	
+	validates :first_name, :last_name, :username, :email, presence: true
 
 	def self.find_first_by_auth_conditions(warden_conditions)
  		conditions = warden_conditions.dup
@@ -17,6 +19,10 @@ class User < ApplicationRecord
  		else
  			where(conditions.to_hash).first
  		end
+	end
+
+	def fullname
+		return self.first_name + ' ' + self.last_name.upcase
 	end
 	
 end

@@ -1,0 +1,25 @@
+<h1>TO BE FORMATTED OFC</h1>
+<h2>Your payment has been validated</h2>
+<h3>New order: <%= Order.find_by_stripe_id(params[:stripeToken]).created_at %></h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Order</th>
+      <th>Item</th>
+      <th>Quantity</th>
+    </tr>
+  </thead>
+
+  	<tbody>
+	<% Cart.where(order_id: Order.find_by_stripe_id(params[:stripeToken]).id).each do |cart_item| %>
+		<tr>
+	        <td><%= cart_item.user %></td>
+	        <td><%= cart_item.order_id %></td>
+	        <td><%= cart_item.item %></td>
+	        <td><%= cart_item.quantity %></td>
+	    </tr>
+	<% end %>
+	</tbody>
+</table>

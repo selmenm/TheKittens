@@ -1,0 +1,129 @@
+<!-- Page Content-->
+<div class="container mb-4">
+  <div class="row">
+    <!-- Account Sidebar-->
+    <div class="col-lg-4 pb-5">
+      <div class="author-card pb-3">
+        <div class="author-card-cover" style="background-image: url(img/widgets/author/cover.jpg);">
+          <span class="btn btn-light btn-sm" data-toggle="tooltip" title="You currently have bought <%= Cart.where(user_id: @user.id).where.not(order_id: nil).length %> items">
+            <i class="fas fa-shopping-cart"></i>&nbsp;<%= Cart.where(user_id: @user.id).where.not(order_id: nil).length %> item(s) bought
+          </span>
+        </div>
+
+        <div class="author-card-profile">
+          <div class="author-card-avatar">
+            <%if @user.avatar.attached?%>
+              <%= image_tag @user.avatar, alt: @user.fullname, :style => "width:85px;height:85px;border-radius:50%;"  %>
+            <%else%>
+              <%= image_tag("default_avatar.svg", :style => "width:85px;height:85px;border-radius:50%;" ) %> 
+            <%end%>
+          </div>
+          <div class="author-card-details">
+            <h5 class="author-card-name text-lg"><%=@user.fullname%></h5><span class="author-card-position">Joined <%=@user.created_at.strftime("%B %d, %Y")%></span>      
+          </div>
+        </div>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, multipart: true) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %> 
+          <div class="form-group align-items-center mb-1">
+            <label class="col-form-label text-muted">Change your profile picture</label>
+            <div class="col-12">
+                <%= f.file_field :avatar, class: 'form-control' %>
+            </div>
+          </div>
+            <div class="col-12">
+              <div class="d-flex flex-wrap justify-content-between align-items-center">
+                <div class="custom-control custom-checkbox d-block"></div>
+                <%= f.submit "Confirm", class: "btn btn-primary btn-sm" %>
+              </div>
+            </div>
+        <% end %>
+      </div>
+
+      <div class="wizard">
+        <nav class="list-group list-group-flush">
+          <a class="list-group-item show active" href="#profileInformation" data-toggle="tab" role="tab" aria-selected="true">
+            <i class="far fa-user"></i>&nbsp;Profile Settings
+          </a>
+          <a class="list-group-item show" href="#profileCredentials" data-toggle="tab" role="tab" aria-selected="false">
+            <i class="fas fa-lock"></i>&nbsp;Security
+          </a>
+          <a class="list-group-item show" href="#profileCart" data-toggle="tab" role="tab" aria-selected="false">
+            <i class="fas fa-shopping-cart"></i>&nbsp;Cart
+            <span class="badge badge-secondary float-md-right"><%= Cart.where(user_id: @user.id).length%></span>
+          </a>
+          <a class="list-group-item show" href="#profileWishlist" data-toggle="tab" role="tab" aria-selected="false">
+            <i class="far fa-heart"></i>&nbsp;Wishlist
+            <span class="badge badge-secondary float-md-right">100</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Profile Settings-->
+    <div class="col-lg-8 pb-5">
+      <div class="tab-content">
+        <div class="tab-pane fade active show" id="profileInformation" role="tabpanel">
+          <h2>Update your profile information</h2>
+          <%= form_for(resource, :html => { :class => "row" }, as: resource_name, url: registration_path(resource_name), html: { method: :put, :class => "row" }) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
+            <%= render 'form', f: f%>
+            <div class="col-12">
+              <hr class="mt-2 mb-3">
+              <div class="d-flex flex-wrap justify-content-between align-items-center">
+                <div class="custom-control custom-checkbox d-block"></div>
+                <%= f.submit "Confirm", class: "btn btn-primary" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <div class="tab-pane fade" id="profileCredentials" role="tabpanel">
+          <h2>Update your credentials</h2>
+          <%= form_for(resource, :html => { :class => "row" }, as: resource_name, url: registration_path(resource_name), html: { method: :put, :class => "row" }) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
+            <%= render 'password', f: f%>
+            <div class="col-12">
+              <hr class="mt-2 mb-3">
+              <div class="d-flex flex-wrap justify-content-between align-items-center">
+                <div class="custom-control custom-checkbox d-block"></div>
+                <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modalCentered">Update Profile</button>
+                <div class="modal fade" id="modalCentered" tabindex="-1" role="dialog">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h4 class="modal-title">Enter your password to confirm changes</h4>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label for="account-confirm-pass">Confirm Password</label>
+                            <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control", placeholder: "Current Password" %>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <%= f.submit "Confirm", class: "btn btn-primary btn-sm" %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="tab-pane fade" id="profileCart" role="tabpanel">
+          <h2>Consult on going cart</h2>
+
+        </div>
+        <div class="tab-pane fade" id="profileWishlist" role="tabpanel">
+          <h2>Check your wishlist</h2>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
