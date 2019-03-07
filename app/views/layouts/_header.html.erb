@@ -1,5 +1,5 @@
 <!-- Off-Canvas Shopping Cart-->
-<div class="offcanvas-container is-triggered offcanvas-container-reverse" id="shopping-cart"><span class="offcanvas-close"><i class="far fa-times-circle"></i></span>
+<div class="offcanvas-container is-triggered offcanvas-container-reverse" id="shopping-cart" ><span class="offcanvas-close"><i class="far fa-times-circle" data-disableScrolling="false"></i></span>
   <div class="px-4">
     <h6>Your Cart</h6>
     <div class="widget widget-cart pt-2">
@@ -7,14 +7,16 @@
         <% total = 0 %>
         <% i = 0 %>
         <% Cart.where(user_id: current_user.id).each do |cartelement| %>
+        <% %>
           <a class="featured-product" data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/carts/<%= cartelement.id %>"><span class="remove-product"><i class="far fa-times-circle"></i></span></a>
           <% i +=1 %>
           <div class="featured-product-thumb"><img src="<%= Item.find(cartelement.item_id).image_url %>" alt="Product Image"/></div>
           <div class="featured-product-info">
             <h5 class="featured-product-title"><%= Item.find(cartelement.item_id).title %> </h5>
             <% total += Item.find(cartelement.item_id).price.to_i %>
+             <h5 class="featured-product-price"><%= i %> x <%= Item.find(cartelement.item_id).price.to_i %>.00 € </h5>
+             <h5 class="featured-product-price">In total : <%= Cart.find(cartelement.item_id).quantity * Item.find(cartelement.item_id).price.to_i %>.00 €</h5>          
             <h5 class="featured-product-title"></h5>
-            <span class="featured-product-price"><%= Item.find(cartelement.item_id).price.to_i * cartelement.quantity.to_i %>.00 €</span>
           </div>
         <% end %>
       <% end %>
