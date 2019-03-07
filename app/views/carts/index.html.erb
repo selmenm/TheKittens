@@ -2,51 +2,33 @@
 <!-- Page Title-->
     <div class="page-title d-flex" aria-label="Page title" style="background-image: url(img/page-title/shop-pattern.jpg);">
       <div class="container text-left align-self-center">
-        <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a>
-            </li>
-            <li class="breadcrumb-item"><a href="shop-boxed-ls.html">Shop</a>
-            </li>
-          </ol>
-        </nav>
-        <h1 class="page-title-heading">Cart</h1>
+       
+        <h1 class="page-title-heading text-center">My Cart</h1>
       </div>
     </div>
     <!-- Page Content-->
     <div class="container pb-5 mb-2">
       <!-- Cart Item-->
 
-    <% @carts.each do |cart| %>
-
-      <tr>
-      
-        <td><%= link_to 'Show', cart %></td>
-        <td><%= link_to 'Edit', edit_cart_path(cart) %></td>
-        <td><%= link_to 'Destroy', cart, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-
+    
 
     <% @total = 0 %>
     <% @carts.each do |cart| %>
-      <div class="cart-item d-md-flex justify-content-between"><span class="remove-item"><i class="far fa-times-circle"></i></span>
+      <div class="cart-item d-md-flex justify-content-between">
+        <a class="featured-product" data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/carts/<%= cart.id %>">
+        <span class="remove-item"><i class="far fa-times-circle"></i></span></a>
         <div class="px-3 my-3"><a class="cart-item-product" href="shop-single.html">
-            <div class="cart-item-product-thumb"><img class="test" src="<%= cart.item.image_url %>" alt="Product"></div>
-            <div class="cart-item-product-info">
-              <h4 class="cart-item-product-title"><%= cart.item.title %></h4><span><strong>Category:</strong><%= Breed.find(Item.find(cart.item.id).breed_id).name %></span>
+          <div class="cart-item-product-thumb"><img class="test" src="<%= cart.item.image_url %>" alt="Product"></div>
+          <div class="cart-item-product-info">
+            <h4 class="cart-item-product-title"><%= cart.item.title %></h4><span><strong>Category:</strong><%= Breed.find(Item.find(cart.item.id).breed_id).name %></span>
             </div></a></div>
 
         <div class="px-3 my-3 text-center">
           <div class="cart-item-label">Quantity</div>
-
-
-
-                <div class="btn-group" role="group" aria-label="Basic example">
-                  <button type="button" class="btn btn-secondary-minus"><i class="fas fa-minus"></i></button>
-                  <button type="button" class="btn btn-secondary-plus"><i class="fas fa-plus"></i></button>
-                </div>
-        
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <button type="button" class="btn btn-secondary-minus"><i class="fas fa-minus"></i></button>
+              <button type="button" class="btn btn-secondary-plus"><i class="fas fa-plus"></i></button>
+            </div>
         </div>
 
         <div class="px-3 my-3 text-center">
