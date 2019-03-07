@@ -1,4 +1,12 @@
 GIT
+  remote: https://github.com/stripe/stripe-ruby
+  revision: df8c141bb8601f1a4574ad2e78f205721007e332
+  specs:
+    stripe (4.9.0)
+      faraday (~> 0.13)
+      net-http-persistent (~> 3.0)
+
+GIT
   remote: https://github.com/stympy/faker.git
   revision: 9a688be2998bc17a2071ed80a4521f5ece67339e
   branch: master
@@ -87,6 +95,7 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.4)
+    connection_pool (2.2.2)
     crass (1.0.4)
     devise (4.6.1)
       bcrypt (~> 3.0)
@@ -107,6 +116,8 @@ GEM
     factory_bot_rails (5.0.1)
       factory_bot (~> 5.0.0)
       railties (>= 4.2.0)
+    faraday (0.15.4)
+      multipart-post (>= 1.2, < 3)
     ffi (1.10.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -150,6 +161,9 @@ GEM
     minitest (5.11.3)
     msgpack (1.2.7)
     multi_json (1.13.1)
+    multipart-post (2.0.0)
+    net-http-persistent (3.0.0)
+      connection_pool (~> 2.2)
     nio4r (2.3.1)
     nokogiri (1.10.1)
       mini_portile2 (~> 2.4.0)
@@ -319,6 +333,7 @@ DEPENDENCIES
   shoulda-matchers
   spring
   spring-watcher-listen (~> 2.0.0)
+  stripe!
   table_print
   turbolinks (~> 5)
   tzinfo-data

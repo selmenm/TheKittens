@@ -17749,7 +17749,7 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 }
 
 .navbar-simple-ghost .navbar-nav > .nav-item:hover > .nav-link, .navbar-simple-ghost .navbar-nav > .nav-item.active > .nav-link {
-  color: #ffffff;
+ color: #ac32e4;
 }
 
 .navbar-simple-ghost .navbar-nav > .nav-item:hover > .nav-link::before, .navbar-simple-ghost .navbar-nav > .nav-item.active > .nav-link::before {

@@ -16,6 +16,7 @@ class CartsController < ApplicationController
   # GET /carts/new
   def new
     @cart = Cart.new
+
   end
 
   # GET /carts/1/edit
@@ -31,7 +32,7 @@ class CartsController < ApplicationController
 
     respond_to do |format|
       if @cart.save
-        format.html { redirect_to @cart, notice: 'Cart was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Cart was successfully created.' }
         format.json { render :show, status: :created, location: @cart }
       else
         format.html { render :new }
@@ -59,9 +60,48 @@ class CartsController < ApplicationController
   def destroy
     @cart.destroy
     respond_to do |format|
-      format.html { redirect_to carts_url, notice: 'Cart was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Cart was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def payment
+    @order = Order.new
+    @amount = 0
+    @carts = Cart.where(user_id: current_user.id)
+    i = 0
+
+    Cart.where(user_id: current_user.id).each do |item_in_cart|
+      i +=1
+      @amount += Item.find(item_in_cart.item_id).price.to_i * item_in_cart.quantity.to_i
+    end
+
+    # En centimes
+    @amount *= 100
+
+    customer = Stripe::Customer.create({
+      email: params[:stripeEmail],
+      source: params[:stripeToken],
+    })
+
+    charge = Stripe::Charge.create({
+      customer: customer.id,
+      amount: @amount,
+      #description renvoie a quel nom est cree le compte (details des payments visibles sur stripe directement, notament le nom)
+      description: 'Rails Stripe customer',
+      currency: 'EUR',
+    })
+
+    @order.stripe_id = params[:stripeToken]
+    @order.save
+    Cart.where(user_id: current_user.id).each do |item_in_cart|
+        item_in_cart.update(order_id: @order.id)
+    end
+    
+
+  rescue Stripe::CardError => e
+    flash[:error] = e.message
+    redirect_to :root
   end
 
   private
