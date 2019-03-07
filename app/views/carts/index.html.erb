@@ -66,7 +66,28 @@
       <!-- Buttons-->
       <hr class="my-2">
       <div class="row pt-3 pb-5 mb-2">
-        <div class="col-sm-12 mb-3"><a class="btn btn-primary btn-block" href="checkout-address.html"><i class="fe-icon-credit-card"></i>&nbsp;Checkout</a></div>
+        <%= form_tag({controller: "carts", action: "payment"}, method: "get") do %>
+          <article>
+            <% if flash[:error].present? %>
+              <div id="error_explanation">
+                <p><%= flash[:error] %></p>
+              </div>
+            <% end %>
+            <label class="amount">
+              <span></span>
+            </label>
+          </article>
+
+          <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                  data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                  data-description="Achat"
+                  data-label="Checkout"
+                  data-amount=@total
+                  data-locale="auto">
+          </script>
+          <script>document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';</script>
+          <button type="submit" class="btn btn-accent mt-0 btn-sm">Checkout</button>
+        <% end %>
       </div>
     </div>
 
@@ -94,6 +115,4 @@
 
 
 </script>
-
-
 
