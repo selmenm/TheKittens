@@ -151,24 +151,23 @@
                 <div class="product-head d-flex justify-content-between align-items-center"><span class="badge badge-danger">En vente!</span>
                   <div>
 
-                  <% sumrating = 0 %>
-                  <% @reviews.where(item_id: element.id).each do |review| %>
-                    <% sumrating += review.rating %>
-                  <% end %>
-                    <% if @reviews.where(item_id: element.id).length == 0 %>
-                      <% rate=0 %>
-                    <% else %>
-                      <% rate = sumrating/@reviews.where(item_id: element.id).length %>
+                    <% sumrating = 0 %>
+                    <% @reviews.where(item_id: element.id).each do |review| %>
+                      <% sumrating += review.rating %>
                     <% end %>
-                  <div>
-                    <div class="rating-stars"><% rate.round.times do %>
-                      <i class="fas fa-star active"></i>
-                    <% end %></div>
-                    <div class="rating-stars"><% (5 - rate.round).times do %>
-                      <i class="fas fa-star"></i>
-                    <% end %></div>
-                  </div>
-
+                      <% if @reviews.where(item_id: element.id).length == 0 %>
+                        <% rate=0 %>
+                      <% else %>
+                        <% rate = sumrating/@reviews.where(item_id: element.id).length %>
+                      <% end %>
+                    <div>
+                      <div class="rating-stars"><% rate.round.times do %>
+                        <i class="fas fa-star active"></i>
+                      <% end %></div>
+                      <div class="rating-stars"><% (5 - rate.round).times do %>
+                        <i class="fas fa-star"></i>
+                      <% end %></div>
+                    </div>
                   </div>
                 </div>
                 <%= link_to element do %>
