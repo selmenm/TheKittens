@@ -16,7 +16,7 @@
     <% @carts.order(:id).each do |cart| %>
       <div class="cart-item d-md-flex justify-content-between">
         <a class="featured-product" data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/carts/<%= cart.id %>">
-        <span class="remove-item"><i class="far fa-times-circle"></i></span></a>
+        <span class="remove-item"><i class="fas fa-times"></i></span></a>
         <div class="px-3 my-3"><a class="cart-item-product" href="shop-single.html">
           <div class="cart-item-product-thumb"><img class="test" src="<%= cart.item.image_url %>" alt="Product"></div>
           <div class="cart-item-product-info">
@@ -28,11 +28,15 @@
         <div class="px-3 my-3 text-center">
           <div class="cart-item-label my-quantity">Quantity: <%= cart.quantity %> </div>
             <div class="btn-group" role="group" aria-label="Basic example">
-              <%= link_to raw("<i class=\"fas fa-minus\"></i>"), removefromcart_path(cart.id), method: "get", class: "btn btn-secondary cminus" %>
+              <% if cart.quantity == 1 %>
+                <%= link_to raw("<i class=\"far fa-trash-alt\"></i>"), cart, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-secondary cminus" %>
+              <% else %>
+                <%= link_to raw("<i class=\"fas fa-minus\"></i>"), removefromcart_path(cart.id), method: "get", class: "btn btn-secondary cminus" %>
+              <% end %>
               <%= link_to raw("<i class=\"fas fa-plus\"></i>"), addtocart_path(cart.id), method: "get", class: "btn btn-secondary cplus" %>
             </div>
         </div>
-        <% @total += cart.item.price.to_i %>
+        <% @total += cart.quantity.to_i * cart.item.price.to_i %>
         <div class="px-3 my-3 text-center">
           <div class="cart-item-label">Subtotal</div><span class="text-xl font-weight-medium "><%= cart.quantity.to_i * cart.item.price.to_i %>.00€</span>
         </div>        
@@ -74,42 +78,3 @@
         <% end %>
       </div>
     </div>
-
-<script>
-
-const $minus = $(document.querySelectorAll(".cminus"))
-const $plus = $(document.querySelectorAll(".cplus"))
-const $image = $(document.querySelectorAll(".test"))
-const $myQuant = $(document.querySelectorAll(".my-quantity".innerHTML))
-console.log($myQuant)
-
-const $price = $(document.querySelectorAll(".font-weight-medium")[2].innerHTML)
-a = (document.querySelectorAll(".font-weight-medium")[2].innerHTML)
-console.log(typeof a)
-var myNumberPrice = parseInt(a)
-console.log(typeof myNumberPrice)
-console.log(myNumberPrice * 3)
-
-
-
-$(document).ready(function(){
-
-  $minus.on('click', () =>{
-
-    $image.hide();
-  });
-
-  $plus.on('click', () =>{
-
-    $image.toggle();
-});
-
-    });
-
-
-
-
-
-
-</script>
-

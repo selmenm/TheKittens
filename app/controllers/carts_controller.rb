@@ -114,6 +114,13 @@ class CartsController < ApplicationController
   end
 
   def removeitem
+    @cart = Cart.find(params[:id])
+    @qty = @cart.quantity - 1
+    @cart.update(quantity: @qty)
+    respond_to do |format|
+      format.html { redirect_to request.referer, notice: 'Cart was successfuuuuuully saved.' }
+      format.json { head :no_content }
+    end
 
   end
 
