@@ -1,51 +1,39 @@
-<footer class="bg-dark pt-5">
-      <div class="container pt-2">
+<footer class="bg-dark pt-3 mt-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 pb-4"><a class="navbar-brand d-inline-block mb-4" href="<%= root_path %>"><%= image_tag("meow.png") %></a></div>
+      <div class="col-lg-9">
+        <h2 class="text-white">The Kittens</h2>
+        <div class="widget widget-light-skin mb-0">
+          <h4 class="widget-title">Useful Links</h4>
+        </div>
         <div class="row">
-          <div class="col-lg-3 pb-4 mb-2"><a class="navbar-brand d-inline-block mb-4" href="<%= root_path %>"><%= image_tag("meow.png") %></a>
-            <p class="text-sm text-white opacity-50">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Utar enim ad minim veniam.</p>
-            <ul class="list-icon text-sm pb-2">
-              <li><i class="fe-icon-map-pin text-white opacity-60"></i><a class="navi-link text-white" href="#">
-                   &nbsp;396 Lillian Blvd, Holbrook, NY, USA</a></li>
-              <li><i class="fe-icon-phone text-white opacity-60"></i><a class="navi-link text-white" href="tel:+1212477690000">
-                   &nbsp;+1 (212) 477 690 000</a></li>
-              <li><i class="fe-icon-mail text-white opacity-60"></i><a class="navi-link text-white" href="mailto:support@example.com">
-                   &nbsp;support@example.com</a></li>
-            </ul><a class="social-btn sb-style-6 sb-facebook sb-light-skin" href="#"><i class="fab fa-facebook-f"></i></a><a class="social-btn sb-style-6 sb-twitter sb-light-skin" href="#"><i class="fab fa-twitter"></i></a><a class="social-btn sb-style-6 sb-youtube sb-light-skin" href="#"><i class="fab fa-youtube"></i></a><a class="social-btn sb-style-6 sb-instagram sb-light-skin" href="#"><i class="fab fa-instagram"></i></a>
-          </div>
-          <div class="col-lg-6">
-            <div class="widget widget-light-skin mb-0">
-              <h4 class="widget-title">Useful Links</h4>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="widget widget-categories widget-light-skin">
-                  <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Our Story</a></li>
-                    <li><a href="#">Careers at CreateX</a></li>
-                    <li><a href="#">Services We Provide</a></li>
-                    <li><a href="#">Latest News</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="widget widget-categories widget-light-skin">
-                  <ul>
-                    <li><a href="#">Help Center</a></li>
-                    <li><a href="#">My Account Info</a></li>
-                    <li><a href="#">Affiliate Program</a></li>
-                    <li><a href="#">Office Directory</a></li>
-                    <li><a href="#">Terms &amp; Conditions</a></li>
-                  </ul>
-                </div>
-              </div>
+          <div class="col-md-3">
+            <div class="widget widget-categories widget-light-skin">
+              <ul>
+                <li><a href="<%= about_us_path %>">About Us</a></li>
+              </ul>
             </div>
           </div>
-          <div class="col-lg-3">
-            <div class="widget widget-light-skin">
-              <h4 class="widget-title">Our mobile app</h4><a class="market-btn apple-btn market-btn-light-skin mr-3 mb-3" href="#"><span class="mb-subtitle">Download on the</span><span class="mb-title">App Store</span></a><a class="market-btn google-btn market-btn-light-skin mr-3 mb-3" href="#"><span class="mb-subtitle">Download on the</span><span class="mb-title">Google Play</span></a><a class="market-btn windows-btn market-btn-light-skin mr-3 mb-3" href="#"><span class="mb-subtitle">Download on the</span><span class="mb-title">Windows Store</span></a>
+          <div class="col-md-3">
+            <div class="widget widget-categories widget-light-skin">
+              <ul>
+                <li><a href="<%= contacts_path %>">Contact</a></li>
+              </ul>
             </div>
           </div>
+          <div class="col-md-3">
+            <div class="widget widget-categories widget-light-skin">
+              <ul>
+                <li><a href="<%= faq_path%>">FAQ</a></li>
+              </ul>
+            </div>
+          </div>
+          <p class="text-sm text-white opacity-50 pl-3">
+            Made with love by Guillaume CHRISTE, Gérard GOACHET, Selmen M'HAMDI & Lauren OLIVIER
+          </p>
         </div>
       </div>
-    </footer>
+    </div>
+  </div>
+</footer>
