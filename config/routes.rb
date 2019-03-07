@@ -17,6 +17,8 @@ Rails.application.routes.draw do
 
   resources :reviews
   resources :items
+
+    get '/carts/payment' => 'carts#payment'
   resources :carts
   resources :orders
   match "/404", :to => "errors#not_found", :via => :all
