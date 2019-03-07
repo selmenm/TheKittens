@@ -122,7 +122,6 @@ class CartsController < ApplicationController
       format.html { redirect_to request.referer, notice: 'Cart was successfuuuuuully saved.' }
       format.json { head :no_content }
     end
-
   end
 
   private
