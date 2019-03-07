@@ -4,7 +4,7 @@ class CartsController < ApplicationController
   # GET /carts
   # GET /carts.json
   def index
-    @carts = Cart.where(user_id: current_user.id)
+    @carts = Cart.where(user_id: current_user.id).where(order_id: nil)
   end
 
   # GET /carts/1
@@ -60,7 +60,7 @@ class CartsController < ApplicationController
   def destroy
     @cart.destroy
     respond_to do |format|
-      format.html { redirect_to root_path, notice: 'Cart was successfully destroyed.' }
+      format.html { redirect_to request.referer, notice: 'Cart was successfuuuuuully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -96,12 +96,25 @@ class CartsController < ApplicationController
     @order.save
     Cart.where(user_id: current_user.id).each do |item_in_cart|
         item_in_cart.update(order_id: @order.id)
-    end
-    
+    end    
 
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to :root
+  end
+
+  def additem
+    @cart = Cart.find(params[:id])
+    @qty = @cart.quantity + 1
+    @cart.update(quantity: @qty)
+    respond_to do |format|
+      format.html { redirect_to request.referer, notice: 'Cart was successfuuuuuully saved.' }
+      format.json { head :no_content }
+    end
+  end
+
+  def removeitem
+
   end
 
   private
