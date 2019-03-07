@@ -1,51 +1,38 @@
-<%= render "devise/shared/error_messages", resource: resource %>
 <div class="col-md-6">
-  <div class="form-group">
-    <label for="account-fn">Gender</label>
+  <div class="form-group mb-2">
+    <label for="account-fn" class="mb-0">Gender</label>
     <%= f.select(:gender, ['Male', 'Female', 'Other'], {}, {:class=>"form-control"}) %>
   </div>
 </div>
 <div class="col-md-6"></div>
 <div class="col-md-6">
-  <div class="form-group">
-    <label for="account-fn">First Name</label>
-    <%= f.text_field :first_name, class: "form-control", autofocus: true, autocomplete: "first_name", placeholder: resource.first_name, :required => true %>
+  <div class="form-group mb-2">
+    <label for="account-fn" class="mb-0">First Name</label>
+    <%= f.text_field :first_name, class: "form-control", autofocus: true, autocomplete: "first_name", placeholder: "First Name" %>
   </div>
 </div>
 <div class="col-md-6">
-  <div class="form-group">
-    <label for="account-ln">Last Name</label>
-    <%= f.text_field :last_name, class: "form-control", autocomplete: "last_name", placeholder: resource.last_name, :required => true %>
+  <div class="form-group mb-2">
+    <label for="account-ln" class="mb-0">Last Name</label>
+    <%= f.text_field :last_name, class: "form-control", autocomplete: "last_name", placeholder: "Last Name" %>
   </div>
 </div>
 <div class="col-md-12">
-  <div class="form-group">
-    <label for="account-ln">Username</label>
-    <%= f.text_field :username, class: "form-control", autocomplete: "username", placeholder: resource.username, :required => true %>
+  <div class="form-group mb-2">
+    <label for="account-ln" class="mb-0">Username</label>
+    <%= f.text_field :username, class: "form-control", autocomplete: "username", placeholder: "Username" %>
   </div>
 </div>
 <div class="col-md-12">
-  <div class="form-group">
-    <label for="account-phone">Age</label>
+  <div class="form-group mb-2">
+    <label for="account-phone" class="mb-0">Age</label>
     <%= f.text_field :age, autocomplete: "age", class: "form-control", type: "number", id: "number-input"%>
   </div>
 </div>
 <div class="col-md-12">
-  <div class="form-group">
-    <label for="account-email">E-mail Address</label>
-    <%= f.email_field :email, class: "form-control", autocomplete: "email", placeholder: resource.email, :required => true %>
-  </div>
-</div>
-<div class="col-md-6">
-  <div class="form-group">
-    <label for="account-pass">New Password</label>
-    <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "Enter your new password"%>
-  </div>
-</div>
-<div class="col-md-6">
-  <div class="form-group">
-    <label for="account-confirm-pass">Confirm Password</label>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "Confirm your password" %>
+  <div class="form-group mb-2">
+    <label for="account-email" class="mb-0">E-mail Address</label>
+    <%= f.email_field :email, class: "form-control", autocomplete: "email", placeholder: "Email" %>
   </div>
 </div>
 

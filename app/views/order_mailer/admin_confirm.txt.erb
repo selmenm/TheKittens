@@ -1,0 +1,17 @@
+Vente n° <%= @order.id %>
+==========================================================
+
+Date : <%= @order.created_at %>
+
+Client : <%= @user.first_name %> <%= @user.last_name.upcase %> (pseudo: <%= @user.username %>
+
+Items : 
+  <% @total = 0 %>
+  <% @cart.each do |element| %>
+    <% picture = Item.find(element.item_id) %>
+  
+   ID : <%= picture.id %> |  Nom : <%= picture.title %> |  Prix : <%= picture.price %> |  Quantité : <%= element.quantity %> |  URL : <%= link_to("Lien", picture.image_url) %> |      </tr>
+    
+    <% @total += picture.price * element.quantity %>
+
+Prix total : <%= @total %>€

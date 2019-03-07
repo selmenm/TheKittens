@@ -8,15 +8,73 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    
   </head>
 
   <body>
 
     <%= render 'layouts/header' %>
-    <%= yield %>
-    <%= render 'layouts/footer' %>
 
+    <% flash.each do |key, value| %>
+      <% unless value.blank? %>
+        <div class="iziToast-wrapper iziToast-wrapper-topRight">
+          <div class="iziToast-capsule" style="height: auto;">
+            <% if key == "alert"  %>
+              <div class="iziToast bounceInLeft iziToast-theme-light iziToast-color-red iziToast-animateInside iziToast-opened" id="<%=key%>">
+                <div class="iziToast-body iziToast-red" style="padding-left: 33px;">
+                  <button id="close-toast-popup" class="m-1 p-0 btn-popup iziToast-red">&times;</button>
+                  <div class="iziToast-texts">
+                    <strong class="slideIn" style="margin-right: 10px;">
+                      <i class="fas fa-ban"></i>&nbsp;&nbsp;Alert
+                    </strong>
+                    <p class="slideIn"><%=value%></p>
+                  </div>
+                </div>
+              </div>
+            <% elsif key == "warning"  %>
+              <div data-izitoast-ref="1551970854150" class="iziToast bounceInLeft iziToast-theme-light iziToast-color-orange iziToast-animateInside iziToast-opened" id="<%=key%>">
+                <div class="iziToast-body iziToast-orange" style="padding-left: 33px;">
+                  <button id="close-toast-popup" class="m-1 p-0 btn-popup iziToast-orange">&times;</button>
+                  <div class="iziToast-texts">
+                    <strong class="slideIn" style="margin-right: 10px;">
+                      <i class="fas fa-exclamation-triangle"></i>&nbsp;&nbsp;Warning
+                    </strong>
+                    <p class="slideIn"><%=value%></p>
+                  </div>
+                </div>
+              </div>
+            <% elsif key == "info"  %>
+              <div data-izitoast-ref="1551970854150" class="iziToast bounceInLeft iziToast-theme-light iziToast-color-blue iziToast-animateInside iziToast-opened" id="<%=key%>">
+                <div class="iziToast-body iziToast-blue" style="padding-left: 33px;">
+                  <button id="close-toast-popup" class="m-1 p-0 btn-popup iziToast-blue">&times;</button>
+                  <div class="iziToast-texts">
+                    <strong class="slideIn" style="margin-right: 10px;">
+                      <i class="fas fa-info-circle"></i>&nbsp;&nbsp;Information
+                    </strong>
+                    <p class="slideIn"><%=value%></p>
+                  </div>
+                </div>
+              </div>
+            <% elsif key == "notice"  %>
+              <div data-izitoast-ref="1551970854150" class="iziToast bounceInLeft iziToast-theme-light iziToast-color-green iziToast-animateInside iziToast-opened" id="<%=key%>">
+                <div class="iziToast-body iziToast-green" style="padding-left: 33px;">
+                  <button id="close-toast-popup" class="m-1 p-0 btn-popup iziToast-green">&times;</button>
+                  <div class="iziToast-texts">
+                    <strong class="slideIn" style="margin-right: 10px;">
+                      <i class="far fa-check-circle"></i>&nbsp;&nbsp;Success
+                    </strong>
+                    <p class="slideIn"><%=value%></p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+
+    <%= yield %>
+
+    <%= render 'layouts/footer' %>
 
   </body>
 </html>

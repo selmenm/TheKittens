@@ -1,7 +1,12 @@
 class RegistrationsController < Devise::RegistrationsController
+	helper_method :params
 	before_action :auth_user, only: [:show, :edit, :update]
 
 	def show
+		@user = User.find(current_user.id)
+	end
+
+	def security
 		@user = User.find(current_user.id)
 	end
 
@@ -44,8 +49,8 @@ class RegistrationsController < Devise::RegistrationsController
 		end
 		if is_valid
 			set_flash_message :notice, :updated
-			sign_in @user, :bypass => true
-			render my_profile_path
+			sign_in :user, @user, bypass: true
+			redirect_to my_profile_path
 		else
 			redirect_to my_profile_path
 		end
