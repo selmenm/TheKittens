@@ -9,6 +9,8 @@
       <th>Order</th>
       <th>Item</th>
       <th>Quantity</th>
+      <th>Price</th>
+      <th>Subtotal</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,6 +22,8 @@
         <td><%= cart.order %></td>
         <td><%= cart.item %></td>
         <td><%= cart.quantity %></td>
+        <td><%= Item.find_by_id(cart.item_id).price %></td>
+        <td><%= cart.total_per_item %></td>
         <td><%= link_to 'Show', cart %></td>
         <td><%= link_to 'Edit', edit_cart_path(cart) %></td>
         <td><%= link_to 'Destroy', cart, method: :delete, data: { confirm: 'Are you sure?' } %></td>

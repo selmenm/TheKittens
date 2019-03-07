@@ -1,5 +1,6 @@
 class CartsController < ApplicationController
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
+  before_action :auth_user
 
   # GET /carts
   # GET /carts.json
@@ -73,7 +74,7 @@ class CartsController < ApplicationController
 
     Cart.where(user_id: current_user.id).each do |item_in_cart|
       i +=1
-      @amount += Item.find(item_in_cart.item_id).price.to_i * item_in_cart.quantity.to_i
+      @amount += item_in_cart.total_per_item
     end
 
     # En centimes
@@ -113,5 +114,8 @@ class CartsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def cart_params
       params.require(:cart).permit(:item_id)
+    end
+    def auth_user
+      redirect_to new_user_session_path unless user_signed_in?
     end
 end
