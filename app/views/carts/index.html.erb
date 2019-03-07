@@ -9,9 +9,7 @@
     <!-- Page Content-->
     <div class="container pb-5 mb-2">
       <!-- Cart Item-->
-
-    
-
+  
     <% @total = 0 %>
     <% @carts.order(:id).each do |cart| %>
       <div class="cart-item d-md-flex justify-content-between">
@@ -24,6 +22,7 @@
             <span><strong>Category:</strong><%= Breed.find(Item.find(cart.item.id).breed_id).name %></span>
             <span><strong>Unit Price:</strong><%= cart.item.price.to_i %>.00€</span>
             </div></a></div>
+
 
         <div class="px-3 my-3 text-center">
           <div class="cart-item-label my-quantity">Quantity: <%= cart.quantity %> </div>
