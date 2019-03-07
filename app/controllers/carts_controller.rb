@@ -66,13 +66,16 @@ class CartsController < ApplicationController
   end
 
   def payment
+    @order = Order.new
     @amount = 0
     @carts = Cart.where(user_id: current_user.id)
     i = 0
-    Cart.where(user_id: current_user.id).each do |cartelement|
+
+    Cart.where(user_id: current_user.id).each do |item_in_cart|
       i +=1
-      @amount += Item.find(cartelement.item_id).price.to_i * cartelement.quantity.to_i
+      @amount += Item.find(item_in_cart.item_id).price.to_i * item_in_cart.quantity.to_i
     end
+
     # En centimes
     @amount *= 100
 
@@ -88,6 +91,13 @@ class CartsController < ApplicationController
       description: 'Rails Stripe customer',
       currency: 'EUR',
     })
+
+    @order.stripe_id = params[:stripeToken]
+    @order.save
+    Cart.where(user_id: current_user.id).each do |item_in_cart|
+        item_in_cart.update(order_id: @order.id)
+    end
+    
 
   rescue Stripe::CardError => e
     flash[:error] = e.message
