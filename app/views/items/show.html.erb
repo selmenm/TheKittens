@@ -176,52 +176,51 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-
-  <div class="col-md-8 pb-5 mb-3">
-    <div class="d-flex flex-wrap justify-content-between pb-2">
-      <h3 class="h4">Latest Reviews</h3><a class="btn btn-primary btn-sm" href="#">View All Reviews</a>
-    </div>
-    <!-- Review-->
-    <div class="blockquote comment mb-4 row">
-      <% @reviews.each do |review| %>
-        <div class="card-body">  
-          <div class="d-flex flex-wrap justify-content-between pb-2">
-            <div class="col-9">
-              <h6 class="text-lg mb-0"><%= review.title %></h6>
-            </div>
-            <!-- Stars counter -->
-            <div class="col-3">
-              <div class="rating-stars" >
-                <% review.rating.times do %>
-                  <i class="fas fa-star active"></i>
-                <% end %>
-                <% (5- review.rating).times do %>
-                  <i class="fas fa-star"></i>
-                <% end %>
+    </div>    
+    <div class="col-md-8 pb-5 mb-3">
+      <div class="d-flex flex-wrap justify-content-between pb-2">
+        <h3 class="h4">Latest Reviews</h3><a class="btn btn-primary btn-sm" href="#">View All Reviews</a>
+      </div>
+      <!-- Review-->
+      <div class="blockquote comment mb-4 row">
+        <% @reviews.each do |review| %>
+          <div class="card-body">  
+            <div class="d-flex flex-wrap justify-content-between pb-2">
+              <div class="col-9">
+                <h6 class="text-lg mb-0"><%= review.title %></h6>
+              </div>
+              <!-- Stars counter -->
+              <div class="col-3">
+                <div class="rating-stars" >
+                  <% review.rating.times do %>
+                    <i class="fas fa-star active"></i>
+                  <% end %>
+                  <% (5- review.rating).times do %>
+                    <i class="fas fa-star"></i>
+                  <% end %>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="d-flex flex-wrap justify-content-between pb-2">   
-            <div class="col-9">
-              <%= review.content %>
-            </div>
-            <div class=" col-3">
-              <div class="d-table-cell align-middle pl-2">
-                <div class="blockquote-footer"> 
-                  <% @users.each do |user| %>
-                    <% if user.id == review.user_id %> 
-                      <%= user.username %> 
+            <div class="d-flex flex-wrap justify-content-between pb-2">   
+              <div class="col-9">
+                <%= review.content %>
+              </div>
+              <div class=" col-3">
+                <div class="d-table-cell align-middle pl-2">
+                  <div class="blockquote-footer"> 
+                    <% @users.each do |user| %>
+                      <% if user.id == review.user_id %> 
+                        <%= user.username %> 
+                      <% end %>
                     <% end %>
-                  <% end %>
-                  <cite> <%= review.created_at.strftime("%FT") %></cite>
+                    <cite> <%= review.created_at.strftime("%FT") %></cite>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
