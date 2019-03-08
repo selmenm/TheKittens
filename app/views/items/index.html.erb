@@ -1,11 +1,9 @@
-<!-- Page Title-->
 <!-- Page Content-->
 <div class="container-fluid pb-5 mb-3">
   <div class="row justify-content-center">
     <div class="col-xl-10">
-
       <!-- Pagination-->
-      <div class="pagination mb-30">
+      <div class="pagination">
         <div><a class="prev-btn" href="<%= path_to_prev_page @items %>"><i class="fas fa-angle-double-left"></i>Previous page</a></div>
         <div><a class="next-btn" href="<%= path_to_next_page @items %>">Next page<i class="fas fa-angle-double-right"></i></a></div>
       </div>
@@ -16,7 +14,8 @@
         <% @items.each do |element| %>
           <div class="col-lg-4 col-md-12 col-sm-12 mb-30">
             <div class="product-card mx-auto mb-3 mw-100">
-              <div class="product-head d-flex justify-content-between align-items-center"><span class="badge badge-danger">En vente!</span>
+              <div class="product-head d-flex justify-content-between align-items-center">
+                <span class="badge badge-danger">On Sale</span>
                 <div>
                   <% sumrating = 0 %>
                   <% @reviews.where(item_id: element.id).each do |review| %>
