@@ -1,187 +1,66 @@
- <!-- Body-->
-  <body>
-    <!-- Page Title-->
-    <!-- Page Content-->
-    <div class="container-fluid pb-5 mb-3">
-      <div class="row justify-content-center">
-        <div class="col-xl-10">
+<!-- Body-->
+<body>
+  <!-- Page Title-->
+  <!-- Page Content-->
+  <div class="container-fluid pb-5 mb-3">
+    <div class="row justify-content-center">
+      <div class="col-xl-10">
 
         <!-- Pagination-->
         <div class="pagination mb-30">
-              <div><a class="prev-btn" href="<%= path_to_prev_page @items %>"><i class="fas fa-angle-double-left"></i>Previous page</a></div>
-              <div><a class="next-btn" href="<%= path_to_next_page @items %>">Next page<i class="fas fa-angle-double-right"></i></a></div>
+          <div><a class="prev-btn" href="<%= path_to_prev_page @items %>"><i class="fas fa-angle-double-left"></i>Previous page</a></div>
+          <div><a class="next-btn" href="<%= path_to_next_page @items %>">Next page<i class="fas fa-angle-double-right"></i></a></div>
         </div>
 
-
-          <!-- Shop Top Filters-->
-          <div class="pb-2 collapse">
-            <div class="d-md-flex justify-content-between">
-              <div class="d-flex">
-                <div class="form-inline pb-4">
-                  <label class="text-muted mr-3" for="product-sort">Sort by</label>
-                  <select class="form-control form-control-bordered mr-3" id="product-sort">
-                    <option>Popularity</option>
-                    <option>Low - Hight Price</option>
-                    <option>High - Low Price</option>
-                    <option>Average Rating</option>
-                    <option>A - Z Order</option>
-                    <option>Z - A Order</option>
-                  </select>
-                </div>
-                <div class="form-inline pb-4">
-                  <label class="text-muted mr-3" for="product-show">Products</label>
-                  <select class="form-control form-control-bordered" id="product-show">
-                    <option>12</option>
-                    <option>20</option>
-                    <option>30</option>
-                    <option>50</option>
-                    <option>80</option>
-                    <option>100</option>
-                  </select>
-                </div>
-              </div>
-              <div class="pb-4 text-center text-md-left"><a class="btn btn-secondary" href="#shop-filters" data-toggle="collapse"><i class="fe-icon-filter"></i>&nbsp;Filters</a></div>
-            </div>
-            <div class="collapse" id="shop-filters">
-              <div class="border pt-4 px-4 mb-3">
-                <div class="row">
-                  <div class="col-lg-3 col-sm-6">
-                    <div class="widget widget-categories">
-                      <h4 class="widget-title">Choose category</h4>
-                      <ul>
-                        <li><a href="#">Computers &amp; Accessories <span>(1138)</span></a></li>
-                        <li><a href="#">Smartphones &amp; Tablets <span>(2356)</span></a></li>
-                        <li><a href="#">TV, Video &amp; Audio <span>(420)</span></a></li>
-                        <li><a href="#">Cameras, Photo &amp; Video <span>(510)</span></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="col-lg-3 col-sm-6">
-                    <div class="widget">
-                      <h4 class="widget-title">Price range</h4>
-                      <form class="range-slider" method="post" data-start-min="250" data-start-max="650" data-min="0" data-max="1000" data-step="1">
-                        <div class="ui-range-slider"></div>
-                        <footer class="ui-range-slider-footer">
-                          <div class="column">
-                            <button class="btn btn-primary btn-xs" type="submit">Filter</button>
-                          </div>
-                          <div class="column">
-                            <div class="ui-range-values">
-                              <div class="ui-range-label">Price:</div>
-                              <div class="ui-range-value-min">$<span></span>
-                                <input type="hidden">
-                              </div>&nbsp;&ndash;&nbsp;
-                              <div class="ui-range-value-max">$<span></span>
-                                <input type="hidden">
-                              </div>
-                            </div>
-                          </div>
-                        </footer>
-                      </form>
-                    </div>
-                  </div>
-                  <div class="col-lg-3 col-sm-6">
-                    <div class="widget">
-                      <h4 class="widget-title">Filter by price</h4>
-                      <div class="custom-control custom-radio">
-                        <input class="custom-control-input" type="radio" id="p100" name="price" checked>
-                        <label class="custom-control-label" for="p100">$0 - $100&nbsp;<span class="text-muted">(254)</span></label>
-                      </div>
-                      <div class="custom-control custom-radio">
-                        <input class="custom-control-input" type="radio" id="p300" name="price">
-                        <label class="custom-control-label" for="p300">$101 - $300&nbsp;<span class="text-muted">(39)</span></label>
-                      </div>
-                      <div class="custom-control custom-radio">
-                        <input class="custom-control-input" type="radio" id="p500" name="price">
-                        <label class="custom-control-label" for="p500">$301 - $500&nbsp;<span class="text-muted">(128)</span></label>
-                      </div>
-                      <div class="custom-control custom-radio">
-                        <input class="custom-control-input" type="radio" id="p750" name="price">
-                        <label class="custom-control-label" for="p750">$501 - $750&nbsp;<span class="text-muted">(310)</span></label>
-                      </div>
-                      <div class="custom-control custom-radio">
-                        <input class="custom-control-input" type="radio" id="p1000" name="price">
-                        <label class="custom-control-label" for="p1000">$751 - $1,000&nbsp;<span class="text-muted">(42)</span></label>
-                      </div>
-                      <div class="custom-control custom-radio">
-                        <input class="custom-control-input" type="radio" id="p1500" name="price">
-                        <label class="custom-control-label" for="p1500">$1,001 - $1,500&nbsp;<span class="text-muted">(217)</span></label>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-3 col-sm-6">
-                    <div class="widget">
-                      <h4 class="widget-title">Filter by brand</h4>
-                      <div class="custom-control custom-checkbox">
-                        <input class="custom-control-input" type="checkbox" id="apple">
-                        <label class="custom-control-label" for="apple">Apple&nbsp;<span class="text-muted">(254)</span></label>
-                      </div>
-                      <div class="custom-control custom-checkbox">
-                        <input class="custom-control-input" type="checkbox" id="bosh">
-                        <label class="custom-control-label" for="bosh">Bosh&nbsp;<span class="text-muted">(39)</span></label>
-                      </div>
-                      <div class="custom-control custom-checkbox">
-                        <input class="custom-control-input" type="checkbox" id="canon">
-                        <label class="custom-control-label" for="canon">Canon Inc.&nbsp;<span class="text-muted">(128)</span></label>
-                      </div>
-                      <div class="custom-control custom-checkbox">
-                        <input class="custom-control-input" type="checkbox" id="dell">
-                        <label class="custom-control-label" for="dell">Dell&nbsp;<span class="text-muted">(310)</span></label>
-                      </div>
-                      <div class="custom-control custom-checkbox">
-                        <input class="custom-control-input" type="checkbox" id="hewlet">
-                        <label class="custom-control-label" for="hewlet">Hewlett-Packard&nbsp;<span class="text-muted">(42)</span></label>
-                      </div>
-                      <div class="custom-control custom-checkbox">
-                        <input class="custom-control-input" type="checkbox" id="lg">
-                        <label class="custom-control-label" for="lg">LG Electronics&nbsp;<span class="text-muted">(310)</span></label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Shop Grid-->
-          <div class="row">
-            <!-- Product-->
-            <% @items.each do |element| %>
+        <!-- Shop Grid-->
+        <div class="row">
+          <!-- Product-->
+          <% @items.each do |element| %>
             <div class="col-lg-4 col-md-12 col-sm-12 mb-30">
               <div class="product-card mx-auto mb-3 mw-100">
                 <div class="product-head d-flex justify-content-between align-items-center"><span class="badge badge-danger">En vente!</span>
                   <div>
-
                     <% sumrating = 0 %>
                     <% @reviews.where(item_id: element.id).each do |review| %>
                       <% sumrating += review.rating %>
                     <% end %>
-                      <% if @reviews.where(item_id: element.id).length == 0 %>
-                        <% rate=0 %>
-                      <% else %>
-                        <% rate = sumrating/@reviews.where(item_id: element.id).length %>
-                      <% end %>
+                    <% if @reviews.where(item_id: element.id).length == 0 %>
+                      <% rate = 0 %>
+                    <% else %>
+                      <% rate = sumrating/@reviews.where(item_id: element.id).length %>
+                    <% end %>
                     <div>
-                      <div class="rating-stars"><% rate.round.times do %>
-                        <i class="fas fa-star active"></i>
-                      <% end %></div>
-                      <div class="rating-stars"><% (5 - rate.round).times do %>
-                        <i class="fas fa-star"></i>
-                      <% end %></div>
+                      <div class="rating-stars">
+                        <% rate.round.times do %>
+                          <i class="fas fa-star active"></i>
+                        <% end %>
+                      </div>
+                      <div class="rating-stars">
+                        <% (5 - rate.round).times do %>
+                          <i class="fas fa-star"></i>
+                        <% end %>
+                      </div>
                     </div>
                   </div>
                 </div>
                 <%= link_to element do %>
                   <img src="<%= element.image_url%>" class="img-fluid product-thumb w-100" style="height:250px"/>
                <% end %>
-                <div class="product-card-body"><a class="product-meta">"Category"</a>
+                <div class="product-card-body">
+                  <a class="product-meta"><%= Breed.find(element.breed_id).name %></a>
                   <h5 class="product-title">
-                  <%= link_to element.title, controller: "items", action: "show", id: element %>
-                  </h5><span class="product-price">
-                  <%= element.price.to_i %>€</span>
+                    <%= link_to element.title, controller: "items", action: "show", id: element %>
+                  </h5>
+                  <span class="product-price"><%= element.price.to_i %>€</span>
                 </div>
-                <div class="product-buttons-wrap">
-                  <div class="product-buttons">
-                    <div class="product-button"><a href="#" data-toast data-toast-position="topRight" data-toast-type="info" data-toast-icon="fe-icon-help-circle" data-toast-title="Product" data-toast-message="added to your wishlist!"><i class="far fa-heart"></i></a></div>
+                <% if user_signed_in? %>
+                  <div class="product-buttons-wrap">
+                    <div class="product-buttons">
+                      <div class="product-button">
+                        <a href="#" data-toast data-toast-position="topRight" data-toast-type="info" data-toast-icon="fe-icon-help-circle" data-toast-title="Product" data-toast-message="added to your wishlist!">
+                          <i class="far fa-heart"></i>
+                        </a>
+                      </div>
                       <% if Cart.where(user_id: current_user.id).where(order_id: nil).map(&:item_id).include?(element.id) %> 
                         <%= link_to raw("<i class=\"fas fa-plus\"></i>"), addtocart_path(Cart.where(user_id: current_user.id).where(order_id: nil).where(item_id: element.id).ids), method: "get", class: "btn btn-secondary cplus" %> 
                       <% else %>  
@@ -190,22 +69,21 @@
                           <%= button_tag(type: "submit", class: "product-button") do %>
                             <i class="fas fa-cart-plus"></i>
                           <% end %>
+                        <% end %>
                       <% end %>
-                    <% end %>
+                    </div>
                   </div>
-                </div>
+                <% end %>
               </div>
             </div>
-            <% end %>
-          </div>
-            <!-- Pagination-->
-            <div class="pagination ">
-                  <div><a class="prev-btn" href="<%= path_to_prev_page @items %>"><i class="fas fa-angle-double-left"></i>Previous page</a></div>
-                  <div><a class="next-btn" href="<%= path_to_next_page @items %>">Next page<i class="fas fa-angle-double-right"></i></a></div>
-            </div>
-
-          </div>
+          <% end %>
+        </div>
+        <!-- Pagination-->
+        <div class="pagination ">
+          <div><a class="prev-btn" href="<%= path_to_prev_page @items %>"><i class="fas fa-angle-double-left"></i>Previous page</a></div>
+          <div><a class="next-btn" href="<%= path_to_next_page @items %>">Next page<i class="fas fa-angle-double-right"></i></a></div>
         </div>
       </div>
     </div>
+  </div>
 </body>

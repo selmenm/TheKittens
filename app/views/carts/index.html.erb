@@ -1,79 +1,82 @@
 
 <!-- Page Title-->
-    <div class="page-title d-flex" aria-label="Page title" style="background-image: url(img/page-title/shop-pattern.jpg);">
-      <div class="container text-left align-self-center">
-       
-        <h1 class="page-title-heading text-center">My Cart</h1>
-      </div>
-    </div>
-    <!-- Page Content-->
-    <div class="container pb-5 mb-2">
-      <!-- Cart Item-->
-  
-    <% @total = 0 %>
-    <% @carts.order(:id).each do |cart| %>
-      <div class="cart-item d-md-flex justify-content-between">
-        <a class="featured-product" data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/carts/<%= cart.id %>">
-        <span class="remove-item"><i class="fas fa-times"></i></span></a>
-        <div class="px-3 my-3"><a class="cart-item-product" href="shop-single.html">
+<div class="page-title d-flex p-0 mb-3" aria-label="Page title">
+  <div class="container text-left align-self-center">
+    <h1 class="page-title-heading text-center">My Cart</h1>
+  </div>
+</div>
+
+<!-- Page Content-->
+<div class="container pb-5 mb-2">
+  <!-- Cart Item-->
+  <% @total = 0 %>
+  <% @carts.order(:id).each do |cart| %>
+    <div class="cart-item d-md-flex justify-content-between">
+      <a class="featured-product" data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/carts/<%= cart.id %>">
+        <span class="remove-item"><i class="fas fa-times"></i></span>
+      </a>
+      <div class="px-3 my-3">
+        <a class="cart-item-product" href="shop-single.html">
           <div class="cart-item-product-thumb"><img class="test" src="<%= cart.item.image_url %>" alt="Product"></div>
           <div class="cart-item-product-info">
             <h4 class="cart-item-product-title"><%= cart.item.title %></h4>
             <span><strong>Category:</strong><%= Breed.find(Item.find(cart.item.id).breed_id).name %></span>
             <span><strong>Unit Price:</strong><%= cart.item.price.to_i %>.00€</span>
-            </div></a></div>
-
-
-        <div class="px-3 my-3 text-center">
-          <div class="cart-item-label my-quantity">Quantity: <%= cart.quantity %> </div>
-            <div class="btn-group" role="group" aria-label="Basic example">
-              <% if cart.quantity == 1 %>
-                <%= link_to raw("<i class=\"far fa-trash-alt\"></i>"), cart, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-secondary cminus" %>
-              <% else %>
-                <%= link_to raw("<i class=\"fas fa-minus\"></i>"), removefromcart_path(cart.id), method: "get", class: "btn btn-secondary cminus" %>
-              <% end %>
-              <%= link_to raw("<i class=\"fas fa-plus\"></i>"), addtocart_path(cart.id), method: "get", class: "btn btn-secondary cplus" %>
-            </div>
-        </div>
-        <% @total += cart.total_per_item %>
-        <div class="px-3 my-3 text-center">
-          <div class="cart-item-label">Subtotal</div><span class="text-xl font-weight-medium "><%= cart.total_per_item %>.00€</span>
-        </div>        
+          </div>
+        </a>
       </div>
-    <% end %>
-      <!--  Subtotal-->
-      <div class="d-sm-flex justify-content-between align-items-center text-center text-sm-left">
-    <!-- Right Aligned -->
-        <div class="animated-digits 
-        " data-number="<%= @total %>">
-          <h5 class="animated-digits-digit">€<span>0</span></h5>
-          <p class="animated-digits-text">Total Cost</p>
-        </div>
-      </div>
-      <!-- Buttons-->
-      <hr class="my-2">
-      <div class="row pt-3 pb-5 mb-2">
-        <%= form_tag({controller: "carts", action: "payment"}, method: "get") do %>
-          <article>
-            <% if flash[:error].present? %>
-              <div id="error_explanation">
-                <p><%= flash[:error] %></p>
-              </div>
+      <div class="px-3 my-3 text-center">
+        <div class="cart-item-label my-quantity">Quantity: <%= cart.quantity %> </div>
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <% if cart.quantity == 1 %>
+              <%= link_to raw("<i class=\"far fa-trash-alt\"></i>"), cart, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-secondary cminus" %>
+            <% else %>
+              <%= link_to raw("<i class=\"fas fa-minus\"></i>"), removefromcart_path(cart.id), method: "get", class: "btn btn-secondary cminus" %>
             <% end %>
-            <label class="amount">
-              <span></span>
-            </label>
-          </article>
-
-          <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                  data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-                  data-description="Achat"
-                  data-label="Checkout"
-                  data-amount=@total
-                  data-locale="auto">
-          </script>
-          <script>document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';</script>
-          <button type="submit" class="btn btn-accent mt-0 btn-sm">Checkout</button>
-        <% end %>
+            <%= link_to raw("<i class=\"fas fa-plus\"></i>"), addtocart_path(cart.id), method: "get", class: "btn btn-secondary cplus" %>
+          </div>
       </div>
+      <% @total += cart.total_per_item %>
+      <div class="px-3 my-3 text-center">
+        <div class="cart-item-label">Subtotal</div>
+        <span class="text-xl font-weight-medium "><%= cart.total_per_item %>.00€</span>
+      </div>        
     </div>
+  <% end %>
+
+  <!--  Subtotal-->
+  <div class="d-sm-flex justify-content-between align-items-center text-center text-sm-left">
+    <!-- Right Aligned -->
+    <div class="animated-digits" data-number="<%= @total %>">
+      <h5 class="animated-digits-digit">€<span>0</span></h5>
+      <p class="animated-digits-text">Total Cost</p>
+    </div>
+  </div>
+
+  <!-- Buttons-->
+  <hr class="my-2">
+  <div class="row pt-3 pb-5 mb-2">
+    <%= form_tag({controller: "carts", action: "payment"}, method: "get") do %>
+      <article>
+        <% if flash[:error].present? %>
+          <div id="error_explanation">
+            <p><%= flash[:error] %></p>
+          </div>
+        <% end %>
+        <label class="amount">
+          <span></span>
+        </label>
+      </article>
+
+      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+              data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+              data-description="Achat"
+              data-label="Checkout"
+              data-amount=@total
+              data-locale="auto">
+      </script>
+      <script>document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';</script>
+      <button type="submit" class="btn btn-accent mt-0 btn-sm">Checkout</button>
+    <% end %>
+  </div>
+</div>

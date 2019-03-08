@@ -10,24 +10,27 @@
         <% i = 0 %>
         <% total_quantity = 0 %>
         <% Cart.where(user_id: current_user.id).where(order_id: nil).order(:id).each do |cartelement| %>
+          <% total += cartelement.total_per_item %>
+          <% total_quantity += cartelement.quantity %>
+        <% end %>
+        <span class="text-sm text-muted">Total Price: <%= total %> .00 € with <%= total_quantity %> articles </span>
+        <div class="d-flex justify-content-between ptexi-3">
+          <a class="btn btn-primary btn-block btn-sm mr-2" href="<%= carts_path%>">View Cart / Checkout</a>
+        </div>
+        <hr class="mt-2 mb-2 border border-accent" />
+        <% Cart.where(user_id: current_user.id).where(order_id: nil).order(:id).each do |cartelement| %>
           <a class="featured-product" data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/carts/<%= cartelement.id %>"><span class="remove-product"><i class="far fa-times-circle"></i></span></a>
           <% i +=1 %>
           <div class="featured-product-thumb">
             <img src="<%= Item.find(cartelement.item_id).image_url %>" alt="Product Image"/>
           </div>
           <div class="featured-product-info">
-            <h5 class="featured-product-title"><%= Item.find(cartelement.item_id).title %> </h5>
-            <% total += cartelement.total_per_item %>
-            <% total_quantity += cartelement.quantity %>
+            <h5 class="featured-product-title"><%= Item.find(cartelement.item_id).title %></h5>
             <h5 class="featured-product-price"> <%= Item.find(cartelement.item_id).price.to_i %>.00 € </h5>
             <h5 class="featured-product-price">x<%= cartelement.quantity %> | In total : <%= cartelement.total_per_item %>.00 €</h5>
             <h5 class="featured-product-title"></h5>
           </div>
         <% end %>
-        <span class="text-sm text-muted">Total Price: <%= total %> .00 € with <%= total_quantity %> articles </span>
-        <div class="d-flex justify-content-between ptexi-3">
-          <a class="btn btn-primary btn-block btn-sm mr-2" href="<%= carts_path%>">View Cart / Checkout</a>
-        </div>
       </div>
     </div>
   </div>   
@@ -72,7 +75,9 @@
     <div class="navbar justify-content-end justify-content-lg-between">
       <!-- Search-->
       <form class="search-box" method="get">
-        <input type="text" id="site-search" placeholder="Type A or C to see suggestions"><span class="search-close"><i class="fe-icon-x"></i></span>
+        <input type="text" id="site-search" placeholder="Type A or C to see suggestions">
+        <span class="search-close">
+          <i class="fe-icon-x"></i></span>
       </form>
       <!-- Main Menu-->
       <ul class="navbar-nav d-none d-lg-block">
@@ -87,8 +92,19 @@
       </ul>
       <div>
         <ul class="navbar-buttons d-inline-block align-middle mr-lg-2">
-          <li class="d-block d-lg-none"><a href="#mobile-menu" data-toggle="offcanvas"><i class="fe-icon-menu"></i></a></li>
-          <li><a href="#shopping-cart" data-toggle="offcanvas"><i class="fas fa-cart-arrow-down"></i></a><span class="badge badge-danger"><%= i %></span></li>
+          <li class="d-block d-lg-none">
+            <a href="#mobile-menu" data-toggle="offcanvas">
+              <i class="fe-icon-menu"></i>
+            </a>
+          </li>
+          <% if user_signed_in? %>
+            <li>
+              <a href="#shopping-cart" data-toggle="offcanvas">
+                <i class="fas fa-cart-arrow-down"></i>
+              </a>
+              <span class="badge badge-danger"><%= i %></span>
+            </li>
+          <% end %>
         </ul>
       </div>
     </div>
