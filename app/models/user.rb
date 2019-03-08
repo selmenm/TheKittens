@@ -10,6 +10,7 @@ class User < ApplicationRecord
 	has_many :reviews
 	has_many :orders
 	has_one_attached :avatar
+	has_many :published_items, foreign_key: 'admin_id', class_name: "Event"
 	
 	validates :first_name, :last_name, :username, :email, presence: true
 
