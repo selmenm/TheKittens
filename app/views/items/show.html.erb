@@ -97,77 +97,78 @@
       <div class="card border-default">
         <div class="card-body">
           <div class="text-center">
-          <% countfive = 0 %><% countfour = 0 %><% countthree = 0 %><% counttwo = 0 %><% countone = 0 %><% sumrating = 0 %><% indice = 100/@reviews.length %>
-          <% @reviews.each do |review| %>
-            <% sumrating += review.rating %>
-            <% case review.rating %>
-              <% when 5 %>
-                <% countfive +=1 %>
-              <% when 4 %>
-                <% countfour +=1 %>
-              <% when 3 %>
-                <% countthree +=1 %>
-              <% when 2 %>
-                <% counttwo +=1 %>
-              <% when 1 %>
-                <% countone +=1 %>
-              <% else %>
-            <% end %>
-          <% end %>
-          <% rate = sumrating / @reviews.length %>
-          <h4>Note : <%= rate.round %></h4>
-          <h5 class='text-muted'>Avis : <%= @reviews.length %></h5>
-          <div>
-            <div class="rating-stars">
-              <% rate.round.times do %>
-                <i class="fas fa-star active"></i>
+            <% countfive = 0 %><% countfour = 0 %><% countthree = 0 %><% counttwo = 0 %><% countone = 0 %><% sumrating = 0 %><% indice = 100/@reviews.length %>
+            <% @reviews.each do |review| %>
+              <% sumrating += review.rating %>
+              <% case review.rating %>
+                <% when 5 %>
+                  <% countfive +=1 %>
+                <% when 4 %>
+                  <% countfour +=1 %>
+                <% when 3 %>
+                  <% countthree +=1 %>
+                <% when 2 %>
+                  <% counttwo +=1 %>
+                <% when 1 %>
+                  <% countone +=1 %>
+                <% else %>
               <% end %>
+            <% end %>
+            <% rate = sumrating / @reviews.length %>
+            <h4>Note : <%= rate.round %></h4>
+            <h5 class='text-muted'>Avis : <%= @reviews.length %></h5>
+            <div>
               <div class="rating-stars">
-                <% (5 - rate.round).times do %>
-                  <i class="fas fa-star"></i>
+                <% rate.round.times do %>
+                  <i class="fas fa-star active"></i>
                 <% end %>
+                <div class="rating-stars">
+                  <% (5 - rate.round).times do %>
+                    <i class="fas fa-star"></i>
+                  <% end %>
+                </div>
               </div>
-            </div>
-            <div class="pt-3">
-              <span class="progress-label">5 stars <span class='text-muted'>- <%= countfive %></span></span>
-              <div class="progress progress-style-3 mb-3">
-                <div class="progress-bar bg-warning" role="progressbar" style="width: <%= countfive*indice %>%;" aria-valuenow="<%= countfive*indice %>" aria-valuemin="0" aria-valuemax="100"></div>
+              <div class="pt-3">
+                <span class="progress-label">5 stars <span class='text-muted'>- <%= countfive %></span></span>
+                <div class="progress progress-style-3 mb-3">
+                  <div class="progress-bar bg-warning" role="progressbar" style="width: <%= countfive*indice %>%;" aria-valuenow="<%= countfive*indice %>" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <span class="progress-label">4 stars <span class='text-muted'>- <%= countfour %></span></span>
+                <div class="progress progress-style-3 mb-3">
+                  <div class="progress-bar bg-warning" role="progressbar" style="width: <%= countfour*indice %>%;;" aria-valuenow="<%= countfour*indice %>" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <span class="progress-label">3 stars <span class='text-muted'>- <%= countthree %></span></span>
+                <div class="progress progress-style-3 mb-3">
+                  <div class="progress-bar bg-warning" role="progressbar" style="width: <%= countthree*indice %>%;" aria-valuenow="<%= countthree*indice %>" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <span class="progress-label">2 stars <span class='text-muted'>- <%= counttwo %></span></span>
+                <div class="progress progress-style-3 mb-3">
+                  <div class="progress-bar bg-warning" role="progressbar" style="width: <%= counttwo*indice %>%;" aria-valuenow="<%= counttwo*indice %>" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <span class="progress-label">1 stars <span class='text-muted'>- <%= countone %></span></span>
+                <div class="progress progress-style-3 mb-3">
+                  <div class="progress-bar bg-warning" role="progressbar" style="width: <%= countone*indice %>%;" aria-valuenow="<%= countone*indice %>" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
               </div>
-              <span class="progress-label">4 stars <span class='text-muted'>- <%= countfour %></span></span>
-              <div class="progress progress-style-3 mb-3">
-                <div class="progress-bar bg-warning" role="progressbar" style="width: <%= countfour*indice %>%;;" aria-valuenow="<%= countfour*indice %>" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-              <span class="progress-label">3 stars <span class='text-muted'>- <%= countthree %></span></span>
-              <div class="progress progress-style-3 mb-3">
-                <div class="progress-bar bg-warning" role="progressbar" style="width: <%= countthree*indice %>%;" aria-valuenow="<%= countthree*indice %>" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-              <span class="progress-label">2 stars <span class='text-muted'>- <%= counttwo %></span></span>
-              <div class="progress progress-style-3 mb-3">
-                <div class="progress-bar bg-warning" role="progressbar" style="width: <%= counttwo*indice %>%;" aria-valuenow="<%= counttwo*indice %>" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-              <span class="progress-label">1 stars <span class='text-muted'>- <%= countone %></span></span>
-              <div class="progress progress-style-3 mb-3">
-                <div class="progress-bar bg-warning" role="progressbar" style="width: <%= countone*indice %>%;" aria-valuenow="<%= countone*indice %>" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
 
-            <!-- Modal -->
-            <div class="pt-3">
-              <a class="btn btn-warning btn-block" data-toggle="modal" data-target="#leaveReview">Leave a Review</a>
-            </div>
-            <div class="modal fade" id="leaveReview" role="dialog">
-              <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Leave a review!</h4>
-                  </div>
-                  <div class="modal-body">
-                    <!-- A compléter -->
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <!-- Modal -->
+              <div class="pt-3">
+                <a class="btn btn-warning btn-block" data-toggle="modal" data-target="#leaveReview">Leave a Review</a>
+              </div>
+              <div class="modal fade" id="leaveReview" role="dialog">
+                <div class="modal-dialog">
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Leave a review!</h4>
+                    </div>
+                    <div class="modal-body">
+                      <!-- A compléter -->
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
                   </div>
                 </div>
               </div>
