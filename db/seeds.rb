@@ -32,14 +32,6 @@ cat_pictures_array =
 	"https://image.noelshack.com/fichiers/2019/10/1/1551697081-cat20.jpg"
 ]
 
-# puts "\n"*2
-# puts "$" *60
-# puts "Seed of table Order"
-# 20.times do |i|
-# 	print "\r#{i+1} orders created over 20"
-# 	Order.create(stripe_id: "CustStripeMaGueule")
-# end
-# puts "\nSeed of table Order has been successfully performed (20/20)"
 
 puts "\n"*2
 puts "$" *60
@@ -83,14 +75,13 @@ j = 1
 		last_name: Faker::Name.last_name,
 		username: Faker::Space.moon,
 		age: rand(18..99),
-		password: "Loveeeeee",
+		password: "aaaaaa",
 		email: Faker::Internet.email
 	)
 	4.times do
 		print "\r #{i} users created over 20 // #{j+1} carts created over 100"
 		Cart.create(
 			user_id: i+1,
-			order: Order.all.sample,
 			item: Item.all.sample,
 			quantity: rand(1..10)
 		)
@@ -113,6 +104,21 @@ User.create(
 	is_admin: true
 )
 puts "Creation of the admin has been successfully performed"
+
+
+puts "\n"*2
+puts "$" *60
+puts "Seed of table Order"
+20.times do |i|
+	print "\r#{i+1} orders created over 20"
+	Order.create(
+		stripe_id: "CustStripeMaGueule",
+		user: User.all.sample
+	)
+end
+puts "\nSeed of table Order has been successfully performed (20/20)"
+
+
 
 puts "\n"*2
 puts "$" *60

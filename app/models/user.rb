@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
 	has_many :carts
 	has_many :reviews
+	has_many :orders
 	has_one_attached :avatar
 	
 	validates :first_name, :last_name, :username, :email, presence: true

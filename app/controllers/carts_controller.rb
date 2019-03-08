@@ -93,7 +93,9 @@ class CartsController < ApplicationController
     })
 
     @order.stripe_id = params[:stripeToken]
+    @order.user_id = current_user.id
     @order.save
+    
     Cart.where(user_id: current_user.id).each do |item_in_cart|
         item_in_cart.update(order_id: @order.id)
     end    
