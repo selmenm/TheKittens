@@ -106,17 +106,17 @@ User.create(
 puts "Creation of the admin has been successfully performed"
 
 
-puts "\n"*2
-puts "$" *60
-puts "Seed of table Order"
-20.times do |i|
-	print "\r#{i+1} orders created over 20"
-	Order.create(
-		stripe_id: "CustStripeMaGueule",
-		user: User.all.sample
-	)
-end
-puts "\nSeed of table Order has been successfully performed (20/20)"
+# puts "\n"*2
+# puts "$" *60
+# puts "Seed of table Order"
+# 20.times do |i|
+# 	print "\r#{i+1} orders created over 20"
+# 	Order.create(
+# 		stripe_id: "CustStripeMaGueule",
+# 		user: User.all.sample
+# 	)
+# end
+# puts "\nSeed of table Order has been successfully performed (20/20)"
 
 
 
