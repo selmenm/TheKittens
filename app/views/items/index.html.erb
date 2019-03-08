@@ -1,89 +1,86 @@
-<!-- Body-->
-<body>
-  <!-- Page Title-->
-  <!-- Page Content-->
-  <div class="container-fluid pb-5 mb-3">
-    <div class="row justify-content-center">
-      <div class="col-xl-10">
+<!-- Page Title-->
+<!-- Page Content-->
+<div class="container-fluid pb-5 mb-3">
+  <div class="row justify-content-center">
+    <div class="col-xl-10">
 
-        <!-- Pagination-->
-        <div class="pagination mb-30">
-          <div><a class="prev-btn" href="<%= path_to_prev_page @items %>"><i class="fas fa-angle-double-left"></i>Previous page</a></div>
-          <div><a class="next-btn" href="<%= path_to_next_page @items %>">Next page<i class="fas fa-angle-double-right"></i></a></div>
-        </div>
+      <!-- Pagination-->
+      <div class="pagination mb-30">
+        <div><a class="prev-btn" href="<%= path_to_prev_page @items %>"><i class="fas fa-angle-double-left"></i>Previous page</a></div>
+        <div><a class="next-btn" href="<%= path_to_next_page @items %>">Next page<i class="fas fa-angle-double-right"></i></a></div>
+      </div>
 
-        <!-- Shop Grid-->
-        <div class="row">
-          <!-- Product-->
-          <% @items.each do |element| %>
-            <div class="col-lg-4 col-md-12 col-sm-12 mb-30">
-              <div class="product-card mx-auto mb-3 mw-100">
-                <div class="product-head d-flex justify-content-between align-items-center"><span class="badge badge-danger">En vente!</span>
+      <!-- Shop Grid-->
+      <div class="row">
+        <!-- Product-->
+        <% @items.each do |element| %>
+          <div class="col-lg-4 col-md-12 col-sm-12 mb-30">
+            <div class="product-card mx-auto mb-3 mw-100">
+              <div class="product-head d-flex justify-content-between align-items-center"><span class="badge badge-danger">En vente!</span>
+                <div>
+                  <% sumrating = 0 %>
+                  <% @reviews.where(item_id: element.id).each do |review| %>
+                    <% sumrating += review.rating %>
+                  <% end %>
+                  <% if @reviews.where(item_id: element.id).length == 0 %>
+                    <% rate = 0 %>
+                  <% else %>
+                    <% rate = sumrating/@reviews.where(item_id: element.id).length %>
+                  <% end %>
                   <div>
-                    <% sumrating = 0 %>
-                    <% @reviews.where(item_id: element.id).each do |review| %>
-                      <% sumrating += review.rating %>
-                    <% end %>
-                    <% if @reviews.where(item_id: element.id).length == 0 %>
-                      <% rate = 0 %>
-                    <% else %>
-                      <% rate = sumrating/@reviews.where(item_id: element.id).length %>
-                    <% end %>
-                    <div>
-                      <div class="rating-stars">
-                        <% rate.round.times do %>
-                          <i class="fas fa-star active"></i>
-                        <% end %>
-                      </div>
-                      <div class="rating-stars">
-                        <% (5 - rate.round).times do %>
-                          <i class="fas fa-star"></i>
-                        <% end %>
-                      </div>
+                    <div class="rating-stars">
+                      <% rate.round.times do %>
+                        <i class="fas fa-star active"></i>
+                      <% end %>
                     </div>
-                  </div>
-                </div>
-                <%= link_to element do %>
-                  <img src="<%= element.image_url%>" class="img-fluid product-thumb w-100" style="height:250px"/>
-               <% end %>
-                <div class="product-card-body">
-                  <a class="product-meta"><%= Breed.find(element.breed_id).name %></a>
-                  <h5 class="product-title">
-                    <%= link_to element.title, controller: "items", action: "show", id: element %>
-                  </h5>
-                  <span class="product-price"><%= element.price.to_i %>€</span>
-                </div>
-                <% if user_signed_in? %>
-                  <div class="product-buttons-wrap">
-                    <div class="product-buttons">
-                      <div class="product-button">
-                        <a href="#" data-toast data-toast-position="topRight" data-toast-type="info" data-toast-icon="fe-icon-help-circle" data-toast-title="Product" data-toast-message="added to your wishlist!">
-                          <i class="far fa-heart"></i>
-                        </a>
-                      </div>
-                      <% if Cart.where(user_id: current_user.id).where(order_id: nil).map(&:item_id).include?(element.id) %> 
-                        <%= link_to raw("<i class=\"fas fa-plus\"></i>"), addtocart_path(Cart.where(user_id: current_user.id).where(order_id: nil).where(item_id: element.id).ids), method: "get", class: "btn btn-secondary cplus" %> 
-                      <% else %>  
-                        <%= form_for Cart.new do |f| %>
-                          <%= f.hidden_field :item_id, :value => element.id %>
-                          <%= button_tag(type: "submit", class: "product-button") do %>
-                            <i class="fas fa-cart-plus"></i>
-                          <% end %>
-                        <% end %>
+                    <div class="rating-stars">
+                      <% (5 - rate.round).times do %>
+                        <i class="fas fa-star"></i>
                       <% end %>
                     </div>
                   </div>
-                <% end %>
+                </div>
               </div>
+              <%= link_to element do %>
+                <img src="<%= element.image_url%>" class="img-fluid product-thumb w-100" style="height:250px"/>
+             <% end %>
+              <div class="product-card-body">
+                <a class="product-meta"><%= Breed.find(element.breed_id).name %></a>
+                <h5 class="product-title">
+                  <%= link_to element.title, controller: "items", action: "show", id: element %>
+                </h5>
+                <span class="product-price"><%= element.price.to_i %>€</span>
+              </div>
+              <% if user_signed_in? %>
+                <div class="product-buttons-wrap">
+                  <div class="product-buttons">
+                    <div class="product-button">
+                      <a href="#" data-toast data-toast-position="topRight" data-toast-type="info" data-toast-icon="fe-icon-help-circle" data-toast-title="Product" data-toast-message="added to your wishlist!">
+                        <i class="far fa-heart"></i>
+                      </a>
+                    </div>
+                    <% if Cart.where(user_id: current_user.id).where(order_id: nil).map(&:item_id).include?(element.id) %> 
+                      <%= link_to raw("<i class=\"fas fa-plus\"></i>"), addtocart_path(Cart.where(user_id: current_user.id).where(order_id: nil).where(item_id: element.id).ids), method: "get", class: "btn btn-secondary cplus" %> 
+                    <% else %>  
+                      <%= form_for Cart.new do |f| %>
+                        <%= f.hidden_field :item_id, :value => element.id %>
+                        <%= button_tag(type: "submit", class: "product-button") do %>
+                          <i class="fas fa-cart-plus"></i>
+                        <% end %>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
             </div>
-          <% end %>
-        </div>
-        <!-- Pagination-->
-        <div class="pagination ">
-          <div><a class="prev-btn" href="<%= path_to_prev_page @items %>"><i class="fas fa-angle-double-left"></i>Previous page</a></div>
-          <div><a class="next-btn" href="<%= path_to_next_page @items %>">Next page<i class="fas fa-angle-double-right"></i></a></div>
-        </div>
+          </div>
+        <% end %>
+      </div>
+      <!-- Pagination-->
+      <div class="pagination ">
+        <div><a class="prev-btn" href="<%= path_to_prev_page @items %>"><i class="fas fa-angle-double-left"></i>Previous page</a></div>
+        <div><a class="next-btn" href="<%= path_to_next_page @items %>">Next page<i class="fas fa-angle-double-right"></i></a></div>
       </div>
     </div>
   </div>
-</body>
+</div>
