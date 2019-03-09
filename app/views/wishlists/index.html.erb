@@ -1,0 +1,26 @@
+
+      <!-- Page Title-->
+      <div class="page-title d-flex" aria-label="Page title" style="background-image: url(img/page-title/shop-pattern.jpg);">
+        <div class="container text-left align-self-center">
+          <h1 class="page-title-heading">Welcome <%= current_user.first_name %> <%= current_user.last_name %> !!!</h1>
+          <h2> ~ Here's your Wishlist ~ </h2>
+        </div>
+      </div>
+      
+       <% @wishlists.each do |wish| %>            
+        <!-- Wishlist-->
+          <div class="container pb-5 mb-2">
+            <div class="cart-item d-md-flex justify-content-between"><a class="featured-product" data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/wishlists/<%= wish.id %>"><span class="remove-item"><i class="fas fa-times"></i></span></a>   
+            <!-- Item-->
+              <div class="px-3 my-3"><a class="cart-item-product" href="shop-single.html">
+                <div class="cart-item-product-thumb"><img class="test" src="<%= wish.item.image_url %>" alt="Product"></div>
+                <div class="cart-item-product-info">
+                  <h4 class="cart-item-product-title"><%= wish.item.title %></h4>
+                  <div class="text-lg text-body font-weight-medium pb-1"><%= wish.item.price.to_i %>.00€</div><span>Availability: <span class='text-success font-weight-medium'>In Stock</span></span>
+                  </div>
+                </div>
+              </div>
+            </a></div>
+          </div>
+        <% end %>
+

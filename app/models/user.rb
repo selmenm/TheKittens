@@ -7,6 +7,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable#, :confirmable
 
 	has_many :carts
+	has_many :wishlists
 	has_many :reviews
 	has_many :orders
 	has_one_attached :avatar

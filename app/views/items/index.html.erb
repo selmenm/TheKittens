@@ -77,9 +77,11 @@
                 <div class="product-buttons-wrap">
                   <div class="product-buttons">
                     <div class="product-button">
-                      <a href="#" data-toast data-toast-position="topRight" data-toast-type="info" data-toast-icon="fe-icon-help-circle" data-toast-title="Product" data-toast-message="added to your wishlist!">
-                        <i class="far fa-heart"></i>
-                      </a>
+                        <%= form_for Wishlist.new do |f| %>
+                        <%= f.hidden_field :item_id, :value => element.id %>
+                        <%= button_tag(type: "submit", class: "product-button") do %>
+                          <i class="fas fa-heart"></i><% end %>
+                        <% end %>
                     </div>
                     <% if Cart.where(user_id: current_user.id).where(order_id: nil).map(&:item_id).include?(element.id) %> 
                       <%= link_to raw("<i class=\"fas fa-plus\"></i>"), addtocart_path(Cart.where(user_id: current_user.id).where(order_id: nil).where(item_id: element.id).ids), method: "get", class: "btn btn-secondary cplus" %> 

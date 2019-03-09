@@ -115,6 +115,13 @@ puts "\nSeed of table Order has been successfully performed (20/20)"
 	)
 end
 
+80.times do
+	Wishlist.create(
+		user_id: rand(1..21),
+		item: Item.all.sample
+	)
+end
+
 40.times do
 	Cart.create(
 		user_id: User.all.sample,

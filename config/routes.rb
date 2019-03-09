@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   devise_scope :user do 
     get "/my_profile" => "registrations#show"
     get "/my_profile/security" => "registrations#security"
+    resources :wishlists
+
   end
 
   resources :reviews

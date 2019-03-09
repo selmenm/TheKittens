@@ -83,6 +83,10 @@
       <ul class="navbar-nav d-none d-lg-block">
         <!-- Home-->
         <li class="nav-item active"><a class="nav-link" href="<%= root_path %>">Home</a></li>
+        <% if user_signed_in? %>
+         <!-- My wishlist -->
+         <li class="nav-item "><a class="nav-link" href="<%= wishlists_path %>">My Wishlist</a></li>
+        <% end %>
         <!-- FAQ-->
         <li class="nav-item "><a class="nav-link" href="<%= faq_path%>">FAQ</a></li>
         <!-- ABOUT US-->
